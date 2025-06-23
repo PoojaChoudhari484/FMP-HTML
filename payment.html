@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!--Top Content -->
+  <div class="header">
+    <div class="left-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+      <button class="menu-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+      </button>
+    </div>
+
+    <div class="right-section">
+      <button class="header-btn">⚙️ Genrate</button>
+      <button class="header-btn">💬</button>
+      <button class="header-btn">🔔</button>
+
+      <select class="dropdown">
+        <option selected>Bangalore</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+      </select>
+
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Payment</h2>
+
+    <div class="payment-box">
+      <div class="form-group">
+        <label for="paymentMethod">Payment method</label>
+        <select id="paymentMethod">
+          <option>Select option</option>
+        </select>
+      </div>
+
+      <div class="details-box">
+        <div class="details-row">
+          <span>Invoice no</span>
+          <span>INV2998-08-087</span>
+        </div>
+        <div class="details-row">
+          <span>Currency</span>
+          <span>INR</span>
+        </div>
+        <div class="details-row">
+          <span>Amount</span>
+          <span>$</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <input type="text" placeholder="Enter bank name" />
+        <input type="text" placeholder="Enter branch name" />
+      </div>
+
+      <div class="form-row">
+        <input type="text" placeholder="Enter number (UTR/SWIFT/TRANS)" />
+        <input type="text" placeholder="Enter cheque number" />
+      </div>
+
+      <div class="form-row">
+        <input type="date" value="2025-03-23" />
+        <input type="text" value="32.75" />
+      </div>
+
+      <div class="form-group">
+        <textarea placeholder="Add remark"></textarea>
+      </div>
+
+      <div class="upload-section">
+        <label for="uploadFile">
+          <div class="upload-box">📁 Upload</div>
+        </label>
+        <input type="file" id="uploadFile" style="display: none" />
+        <div class="file-preview">🖼️ image.jpeg <span>12 kb</span></div>
+      </div>
+
+      <div class="buttons">
+        <!-- <button class="close-btn">Close</button> -->
+        <button class="pay-btn">Pay</button>
+  <button class="Save-btn" onclick="history.back()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  /* height: 90%;
+      overflow: hidden; */
+  /* padding: 20px; */
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h2 {
+  color: #2f73f2;
+  margin-bottom: 20px;
+}
+
+.payment-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+select,
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+textarea {
+  height: 60px;
+  resize: none;
+}
+
+.details-box {
+  background: #f8f8f8;
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.upload-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.upload-box {
+  background: #f0f0f0;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px dashed #ccc;
+}
+
+.file-preview {
+  background: #eef6ff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.file-preview span {
+  font-size: 12px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-btn,
+.pay-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.pay-btn1 {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* .close-btn {
+  background: #f2f2f2;
+  color: #333;
+} */
+
+.pay-btn {
+  background: #2f73f2;
+  color: white;
+}
+
+  </style>
+</body>
+</html>

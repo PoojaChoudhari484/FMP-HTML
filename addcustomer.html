@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Customer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add customer</h2>
+    <div class="tabs">
+      <a href="#" class="active">Account details</a>
+      <a href="#">Contact</a>
+      <a href="#">Finance setting</a>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn">Customer details</button>
+      <button class="accordion-btn">Business address</button>
+      <button class="accordion-btn active">Business contact</button>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="arun5454@gmail.com">
+      </div>
+      <div class="form-group">
+        <label>Website</label>
+        <input type="text" placeholder="www.arunarora.com">
+      </div>
+      <div class="form-group full">
+        <label>City</label>
+        <input type="text" placeholder="Mahape, Navi Mumbai - 400702">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="text" placeholder="8790521454">
+      </div>
+      <div class="form-group">
+        <label>Mobile</label>
+        <div class="mobile-input">
+          <span class="flag-icon flag-icon-in"></span>
+          <input type="text" placeholder="+91 8799521454">
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="save-btn">Save</button>
+<button class="save-btn" onclick="history.back()">Close</button>
+
+    </div>
+  </div>
+
+
+
+  <style>
+    body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f7fb;
+  padding: 40px;
+}
+
+.form-container {
+  background: #fff;
+  border: 2px dashed #007bff;
+  border-radius: 6px;
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.tabs a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 5px;
+}
+
+.tabs a.active {
+  border-color: #007bff;
+}
+
+.accordion {
+  margin-bottom: 20px;
+}
+
+.accordion-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #e8f0fe;
+  border: none;
+  padding: 10px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.accordion-btn.active {
+  background: #d0e3ff;
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  flex: 1 1 100%;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.mobile-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-input input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.save-btn {
+  background: #007bff;
+  border: none;
+  color: #fff;
+  padding: 8px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #007bff;
+  border: none;
+  color: #fff;
+  padding: 8px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  </style>
+
+</body>
+</html>

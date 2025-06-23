@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary-blue: #2e6cff;
+            --light-blue: #eef4ff;
+            --dark-blue: #1a53d3;
+            --text-color: #333;
+            --light-text: #4a5568;
+            --border-color-light: #eee; /* Lighter border color */
+            --border-color-medium: #e0e0e0; /* Medium border color */
+            --bg-light: #f5f7fa;
+            --bg-white: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.08);
+        }
+
+        /* Global settings to remove page scroll */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevents global page scroll */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+        }
+
+        /* Top Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+            padding: 0 30px;
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color-medium);
+            box-shadow: 0 2px 8px var(--shadow-light);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 35px;
+            height: 35px;
+        }
+
+        .menu-toggle {
+            background-color: transparent;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .menu-toggle img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-btn {
+            background-color: #e6f0ff; /* Lighter blue background */
+            border: none;
+            padding: 10px 18px; /* More padding */
+            border-radius: 12px; /* Softer corners */
+            color: #2563eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 15px; /* Consistent font size */
+            display: flex; /* Allows centering of icon/text if needed */
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Spacing between icon and text */
+        }
+
+        .header-btn:hover {
+            background-color: #dbeafe;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+        }
+        
+        .header-btn i {
+            font-size: 16px;
+        }
+
+        .header-icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-icon-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown {
+            padding: 8px 30px 8px 15px;
+            border: 1px solid #cdd5e1;
+            border-radius: 8px;
+            color: var(--light-text);
+            font-weight: 500;
+            cursor: pointer;
+            background-color: var(--bg-white);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px;
+            min-width: 120px;
+        }
+
+        .dropdown:hover {
+            border-color: var(--primary-blue);
+        }
+
+        .profile-pic {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #a8c8f8;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 65px; /* Aligns below the header */
+            width: 60px;
+            height: calc(100% - 65px); /* Occupies remaining height */
+            background: var(--bg-white);
+            box-shadow: 3px 0 15px var(--shadow-medium);
+            overflow-x: hidden;
+            transition: width 0.3s ease;
+            padding-top: 15px;
+            z-index: 90; /* Below header, above main content */
+        }
+
+        .sidebar:hover {
+            width: 280px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: var(--light-text);
+            transition: background 0.3s ease, color 0.3s ease;
+            gap: 15px;
+            white-space: nowrap;
+        }
+
+        .sidebar ul li a i {
+            font-size: 18px;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .sidebar ul li a span {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover ul li a span {
+            display: inline;
+            opacity: 1;
+        }
+
+        .sidebar ul li:hover > a {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .sidebar ul li.selected > a {
+            background-color: #dbeafe;
+            color: var(--primary-blue);
+            font-weight: 600;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 16px;
+        }
+
+        /* Invoice submenu styles - Hidden by default, shown with 'menu-expanded' class */
+        .invoice-submenu {
+            background: #fdfdfd;
+            margin: 0;
+            padding-left: 40px;
+            display: none; /* Hide by default */
+            list-style: disc;
+            color: #ccc;
+        }
+
+        /* Show invoice submenu when parent LI has 'menu-expanded' class */
+        .sidebar ul li.menu-expanded > .invoice-submenu {
+            display: block;
+        }
+        
+        .invoice-submenu li a {
+            font-size: 13px; /* Smaller font for submenu items */
+            padding: 8px 0; /* Adjust padding for submenu items */
+            gap: 0; /* Remove gap for submenu items */
+            padding-left: 10px; /* Indent submenu items */
+            border-left: none; /* Remove border for submenu items */
+        }
+
+        .invoice-submenu li.selected a {
+            font-weight: 700;
+            color: var(--dark-blue); /* Darker blue for selected submenu item */
+            background-color: #e0eaff; /* Lighter background for selected submenu */
+        }
+
+
+        /* Main Content Styles - Crucial for centering and height management */
+        main {
+            margin-left: 60px; /* Space for collapsed sidebar */
+            margin-top: 65px; /* Space for fixed header */
+            height: calc(100vh - 65px); /* Occupies remaining viewport height */
+            width: calc(100% - 60px); /* Occupies remaining width */
+            padding: 30px; /* Padding around the customer summary */
+            box-sizing: border-box; /* Include padding in height/width calculation */
+            transition: margin-left 0.3s ease;
+
+            /* Centering the content (customer-summary) */
+            display: flex;
+            align-items: center; /* Vertical centering */
+            justify-content: center; /* Horizontal centering */
+            /* If content is too large, it will be clipped due to body overflow:hidden */
+            overflow: hidden; /* Ensure main itself doesn't scroll if content is too large for the centered area */
+        }
+
+        .sidebar:hover ~ main {
+            margin-left: 280px;
+            width: calc(100% - 280px); /* Adjust width when sidebar expands */
+        }
+
+        /* Customer Summary Styles - No internal scrolling, height adjusts to content */
+        .customer-summary {
+            background: var(--bg-white);
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            /* Removed max-height and overflow-y: auto */
+            width: 100%; /* Ensure it takes full width of main's content area */
+            max-width: 1200px; /* Optional: limit max width for better readability */
+            box-sizing: border-box; /* Include padding in dimensions */
+            flex-shrink: 0; /* Prevents it from shrinking too much if space is constrained */
+            /* The height will now be determined by its content */
+        }
+        
+        .customer-summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px; /* Space below the header line */
+        }
+
+        .customer-summary-header h2 {
+            margin: 0; /* Remove default margin */
+            font-size: 26px; /* Adjust font size if needed */
+        }
+
+        /* Adjustments for elements within customer-summary to prevent unwanted space */
+        .customer-summary h2 {
+            margin-top: 0; /* Remove top margin from first element for cleaner layout */
+        }
+        .customer-summary .pagination {
+            margin-bottom: 0; /* Remove bottom margin from last element for cleaner layout */
+        }
+
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            /* Removed margin-bottom here as it's now controlled by .customer-summary-header */
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            background-color: var(--primary-blue);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex; /* For icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 15px; /* Icon size for regular buttons */
+        }
+
+        .btn-outline {
+            background: var(--bg-white);
+            border: 1px solid #ccc;
+            color: var(--text-color);
+            padding: 10px 15px; /* Adjusted padding */
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex; /* For icon alignment */
+            align-items: center;
+            gap: 6px; /* Space between icon and text */
+        }
+
+        .btn-outline i {
+            font-size: 14px; /* Icon size for outline buttons */
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f0f0;
+            border-color: var(--primary-blue);
+        }
+
+        .search-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color-medium); /* Use a variable for consistency */
+            border-radius: 8px;
+            padding: 8px 15px;
+            background-color: var(--bg-white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .search-section i {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .search-section input[type="text"] {
+            flex: 1;
+            padding: 8px 0;
+            border-radius: 0;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color-light); /* Single, lighter outer border for the table */
+            border-radius: 8px; /* Apply border-radius to the table itself */
+            overflow: hidden; /* Ensures border-radius clips content */
+        }
+
+        thead th {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 15px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color-light); /* Lighter border for header rows */
+        }
+
+        /* Remove individual cell border-radius as it's on the table now */
+        thead th:first-child {
+            border-top-left-radius: 0;
+        }
+        thead th:last-child {
+            border-top-right-radius: 0;
+        }
+
+
+        tbody td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color-light); /* Lighter border for rows */
+            font-size: 14px;
+            color: #444;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none; /* No border for the last row */
+        }
+
+        tbody tr:hover {
+            background-color: #fcfdff;
+        }
+
+        tbody td img {
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        tbody td .fas {
+            margin-right: 10px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.2s ease;
+        }
+
+        tbody td .fas:hover {
+            color: var(--primary-blue);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-top: 25px; /* Add margin above pagination if needed */
+        }
+
+        .pagination button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: var(--bg-white);
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .pagination button:hover:not(.active) {
+            background-color: #f0f0f0;
+            border-color: #aaa;
+        }
+
+        .pagination button.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .pagination span {
+            display: flex;
+            gap: 5px;
+        }
+
+        .pagination span button {
+            min-width: 35px;
+            text-align: center;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            width: 500px;
+            max-width: 90%;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #777;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: var(--text-color);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color-medium);
+            padding-bottom: 5px;
+        }
+
+        .tab {
+            padding: 10px 18px;
+            border-radius: 8px 8px 0 0;
+            border: 1px solid transparent;
+            border-bottom: none;
+            background: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            color: #777;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            border-bottom-color: var(--primary-blue);
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab:hover:not(.active) {
+            color: var(--primary-blue);
+            border-color: #dbeafe;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid var(--border-color-medium);
+            border-radius: 8px;
+            background-color: #fcfcfc;
+        }
+
+        .form-section h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #555;
+            border-bottom: 1px dashed var(--border-color-light);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            min-width: 200px;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(46, 108, 255, 0.2);
+            outline: none;
+        }
+
+        .footer-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color-medium);
+        }
+
+        .footer-buttons .close {
+            background-color: #e0e0e0;
+            color: #555;
+        }
+
+        .footer-buttons .close:hover {
+            background-color: #ccc;
+        }
+
+        .footer-buttons .save {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .footer-buttons .save:hover {
+            background-color: var(--dark-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <!--Top Content -->
+  <div class="header">
+    <div class="left-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+      <button class="menu-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+      </button>
+    </div>
+
+    <div class="right-section">
+      <button class="header-btn">⚙️ Genrate</button>
+      <button class="header-btn">💬</button>
+      <button class="header-btn">🔔</button>
+
+      <select class="dropdown">
+        <option selected>Bangalore</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+      </select>
+
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+  </div>
+
+   
+<div class="header">
+    <div class="left-section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+        <button class="menu-toggle" id="menuToggle">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+        </button>
+    </div>
+
+    <div class="right-section">
+        <button class="header-btn">⚙️ Generate</button>
+        <button class="header-btn">💬</button>
+        <button class="header-btn">🔔</button>
+
+        <select class="dropdown">
+            <option selected>Bangalore</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+        </select>
+
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li class="active"><a href="#"><i class="fas fa-home"></i> <span class="home1">Home</span></a></li>
+        <li><a href="#"><i class="fas fa-qrcode"></i> <span class="home">Dashboard</span></a></li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-users"></i> Customers</span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">View Customers</a></li>
+                <li><a href="#">Add Customers</a></li>
+                <li><a href="#">Upload Customers Data</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="far fa-file-alt"></i> Invoices</span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">View Invoices</a></li>
+                <li><a href="#">Add Invoice</a></li>
+                <li><a href="#">Upload Invoice Data</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-bell"></i> Reminders</span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">View Reminders</a></li>
+                <li><a href="#">Create Reminders</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-money-check-alt"></i> EMI</span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">View EMI</a></li>
+                <li><a href="#">Add EMI</a></li>
+                <li><a href="#">Upload EMI Data</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-donate"></i> Payment Dashboard</span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">Payment OCR Extraction</a></li>
+                <li><a href="#">Make Payment</a></li>
+                <li><a href="#">Bank Reconciliation</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#"><i class="fas fa-id-card-alt"></i><span class="home2">Customer Portal</span></a></li>
+    </ul>
+</div>
+<style>
+      :root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --sidebar-bg: #ffffff;
+    --text-color-dark: #333;
+    --text-color-light: #666;
+    --border-color: #e9ecef;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light grey background */
+    display: flex;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+/* Top Content (Header) */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px; /* Slightly taller header */
+    padding: 0 30px; /* More horizontal padding */
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0; /* Softer border */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05); /* Enhanced shadow for depth */
+    position: fixed; /* Keep header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased gap */
+}
+
+.logo {
+    width: 38px; /* Slightly larger logo */
+    height: 38px;
+}
+
+.menu-toggle {
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 10px; /* Softer corners */
+    padding: 10px; /* More padding */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for a subtle press effect */
+}
+
+.menu-toggle img {
+    width: 20px; /* Slightly larger icon */
+    height: 20px;
+}
+
+.menu-toggle:hover {
+    background-color: #e0e7ff;
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.menu-toggle:active {
+    transform: translateY(0); /* Press effect */
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased gap */
+}
+
+.header-btn {
+    background-color: #e6f0ff; /* Lighter blue background */
+    border: none;
+    padding: 10px 18px; /* More padding */
+    border-radius: 12px; /* Softer corners */
+    color: #2563eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px; /* Consistent font size */
+    display: flex; /* Allows centering of icon/text if needed */
+    align-items: center;
+    justify-content: center;
+}
+
+.header-btn:hover {
+    background-color: #dbeafe;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+.dropdown {
+    padding: 12px 20px; /* More padding */
+    margin-top: 1px;
+    border: 1px solid #cdd5e1; /* Slightly darker border */
+    border-radius: 8px; /* Softer corners */
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none; /* Removes default dropdown arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563eb%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Space for custom arrow */
+}
+
+.dropdown:hover {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Focus-like glow on hover */
+}
+
+.profile-pic {
+    width: 40px; /* Slightly larger profile pic */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a8c8f8; /* A subtle border */
+    transition: transform 0.2s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 70px; /* Adjust based on header height */
+    width: 300px; /* Slightly narrower sidebar */
+    height: 150%; /* Increased sidebar height */
+    background: var(--sidebar-bg);
+    box-shadow: 3px 0 15px var(--shadow-light);
+    overflow-y: auto;
+    padding-top: 20px; /* Padding for the top of the content */
+}
+
+.sidebar .home {
+    margin-right: 130px;
+}
+
+.sidebar .home1 {
+    margin-right: 165px;
+}
+
+.sidebar .home2 {
+    margin-right: 90px;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Ensure no default list styling */
+    top: 50px;
+}
+
+.sidebar ul li {
+    position: relative; /* For submenu positioning */
+}
+
+.sidebar ul a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    padding: 12px 25px; /* Increased padding for better touch targets */
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.sidebar ul a i {
+    margin-right: 12px; /* Increased margin for icons */
+    color: var(--text-color-light);
+    font-size: 18px; /* Slightly larger icons */
+    width: 20px; /* Fixed width for icons to align text */
+    text-align: center;
+}
+
+.sidebar ul li:hover > a,
+.sidebar ul li.active > a { /* Added active state */
+    background-color: #eef4ff; /* Light blue hover */
+    color: var(--primary-color);
+    padding-left: 30px; /* Slight indent on hover */
+}
+
+.sidebar ul li:hover > a i,
+.sidebar ul li.active > a i {
+    color: var(--primary-color);
+}
+
+/* Arrow icon */
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotate {
+    transform: rotate(180deg);
+}
+
+/* Submenu */
+.submenu {
+    background: #fdfdfd;
+    padding: 0;
+    border-left: 3px solid var(--primary-color); /* Highlight with primary color */
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px 45px; /* Indent submenu items */
+    font-size: 14px;
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: none; /* Remove border from submenu items */
+}
+
+.submenu li a:hover {
+    background-color: #e0e7ff; /* Lighter blue for submenu hover */
+    color: var(--primary-color);
+    padding-left: 50px; /* Further indent on hover */
+}
+
+.submenu li.selected a {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 0 5px 5px 0; /* Rounded only on the right side */
+    margin-right: 15px;
+    position: relative;
+}
+
+.submenu li.selected a::before {
+    content: '';
+    position: absolute;
+    left: -3px; /* Align with parent border */
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--primary-hover-color); /* Darker shade for emphasis */
+}
+
+li.open .submenu {
+    max-height: 500px; /* Sufficient height to show all items */
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+    <main>
+        <section class="customer-summary">
+            <div class="customer-summary-header">
+                <h2>Customer Summary</h2>
+                <div class="action-buttons">
+                    <button class="btn" id="uploadBtn"><i class="fas fa-cloud-upload-alt"></i> Upload</button>
+                    <button class="btn" id="addCustomerBtn"><i class="fas fa-user-plus"></i> Add Customer</button>
+                </div>
+            </div>
+
+            <div class="search-section">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search" />
+                <button class="btn-outline"><i class="fas fa-filter"></i> Filter</button>
+                <button class="btn-outline"><i class="fas fa-sort"></i> Sort</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Customer Email</th>
+                        <th>Team Space Name</th>
+                        <th>Phone Number</th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTable">
+                    <tr>
+                        <td><img src="https://i.pravatar.cc/30?u=arun"> Arun Arora</td>
+                        <td>arun5454@gmail.com</td>
+                        <td>Demo</td>
+                        <td>+918799521454</td>
+                        <td>
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://i.pravatar.cc/30?u=bryan"> Bryan Bizlem</td>
+                        <td>bryan@bizlemdigital.com</td>
+                        <td>Demo</td>
+                        <td>+918799521454</td>
+                        <td>
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://i.pravatar.cc/30?u=amit"> Amit Ajmera</td>
+                        <td>amit.ajmera@larsentoubro.com</td>
+                        <td>Demo</td>
+                        <td>+918799521454</td>
+                        <td>
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://i.pravatar.cc/30?u=nikhil"> Nikhil Sharma</td>
+                        <td>nikhilsharma2@larsentoubro.com</td>
+                        <td>Demo</td>
+                        <td>+918799521454</td>
+                        <td>
+                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button id="prevBtn">&larr; Previous</button>
+                <span id="pages">
+                    <button>1</button>
+                    <button class="active">2</button>
+                    <button>3</button>
+                    <button>...</button>
+                    <button>10</button>
+                </span>
+                <button id="nextBtn">Next &rarr;</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="customerModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2>Add Customer</h2>
+            <div class="tabs">
+                <button class="tab active">Account details</button>
+                <button class="tab">Contact</button>
+                <button class="tab">Finance setting</button>
+            </div>
+            <div class="form-section">
+                <h3>Customer Details</h3>
+                <div class="form-group">
+                    <input type="email" placeholder="Email">
+                    <input type="text" placeholder="Website">
+                </div>
+            </div>
+            <div class="form-section">
+                <h3>Business Address</h3>
+                <div class="form-group">
+                    <input type="text" placeholder="City">
+                </div>
+            </div>
+            <div class="form-section">
+                <h3>Business Contact</h3>
+                <div class="form-group">
+                    <input type="text" placeholder="Phone">
+                    <input type="text" placeholder="Mobile">
+                </div>
+            </div>
+            <div class="footer-buttons">
+                <button class="btn close" id="closeModal2">Close</button>
+                <button class="btn save">Save</button>
+                          </div>
+        </div>
+    </div>
+
+    <script>
+        const addCustomerBtn = document.getElementById("addCustomerBtn");
+        const customerModal = document.getElementById("customerModal");
+        const closeModal1 = document.getElementById("closeModal");
+        const closeModal2 = document.getElementById("closeModal2");
+        const tabButtons = document.querySelectorAll('.tabs .tab');
+
+        addCustomerBtn.addEventListener("click", () => {
+            customerModal.style.display = "flex";
+        });
+
+        closeModal1.addEventListener("click", () => {
+            customerModal.style.display = "none";
+        });
+
+        closeModal2.addEventListener("click", () => {
+            customerModal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === customerModal) {
+                customerModal.style.display = "none";
+            }
+        });
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                console.log(`Switched to ${button.textContent} tab`);
+            });
+        });
+
+
+        // New JavaScript for Sidebar Invoice Submenu
+        const sidebarMenuItems = document.querySelectorAll('#sidebar > ul > li'); // Get all top-level menu items
+        const invoiceMenuItem = document.getElementById('invoiceMenuItem'); // Get the specific Invoice LI
+
+        // Function to remove 'selected' and 'menu-expanded' from all items
+        function resetSidebarSelection() {
+            sidebarMenuItems.forEach(li => {
+                li.classList.remove('selected');
+                if (li === invoiceMenuItem) {
+                    li.classList.remove('menu-expanded');
+                }
+            });
+        }
+
+        sidebarMenuItems.forEach(item => {
+            item.addEventListener('click', function(event) {
+                // Prevent default link behavior for parent menu items that control submenus
+                const clickedLink = this.querySelector('a');
+                if (clickedLink && clickedLink.getAttribute('href') === '#') {
+                    event.preventDefault();
+                }
+
+                // If the clicked item is the invoice menu item
+                if (this === invoiceMenuItem) {
+                    // If it's already selected, and we click it again, toggle both selected and expanded
+                    if (this.classList.contains('selected')) {
+                        this.classList.toggle('menu-expanded');
+                        // If it's no longer expanded, deselect it too
+                        if (!this.classList.contains('menu-expanded')) {
+                            this.classList.remove('selected');
+                        }
+                    } else {
+                        // If it's not selected, make it selected and expand it
+                        resetSidebarSelection(); // Deselect others first
+                        this.classList.add('selected');
+                        this.classList.add('menu-expanded');
+                    }
+                } else {
+                    // If another item is clicked
+                    resetSidebarSelection(); // Deselect all including invoice menu item
+                    this.classList.add('selected'); // Select the new item
+                }
+            });
+        });
+
+        // Initialize the first item (Home) as selected on page load, and ensure invoice submenu is hidden
+        // This is a common pattern for initial active state. If you want nothing selected, remove this block.
+        const homeMenuItem = document.querySelector('#sidebar > ul > li:first-child');
+        if (homeMenuItem) {
+            homeMenuItem.classList.add('selected');
+        }
+        
+        if (invoiceMenuItem) {
+            invoiceMenuItem.classList.remove('menu-expanded');
+            
+        }
+
+
+        //upload link
+        document.getElementById("uploadBtn").addEventListener("click", function(){
+        window.location.href = "upload.html";
+
+    });
+
+    document.getElementById("invoice").addEventListener("click", function(){
+        window.location.href= "yourinvoice.html";
+    });
+
+
+   
+
+
+    </script>
+    
+</body>
+</html>

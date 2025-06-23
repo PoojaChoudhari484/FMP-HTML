@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Invoice</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f4f8;
+    }
+
+    .container {
+      background: white;
+      max-width: 1000px;
+      height: 95vh;
+      margin: 10px auto;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .header h2 {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .details-section {
+      display: flex;
+      justify-content: space-between;
+      border: 1px dashed #ccc;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .details-box {
+      flex: 1;
+    }
+
+    .details-box h4 {
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    .details-box p {
+      margin: 3px 0;
+      line-height: 1.4;
+    }
+
+    .table-wrapper {
+      margin-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 6px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+      background-color: #f9f9f9;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin: 5px 0;
+    }
+
+    .pagination button {
+      background: none;
+      border: none;
+      color: #2563eb;
+      cursor: pointer;
+    }
+
+    .pagination span {
+      padding: 2px 8px;
+      background: #eee;
+      border-radius: 4px;
+    }
+
+    .remarks-section {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    textarea {
+      flex: 1;
+      height: 60px;
+      padding: 6px;
+      font-size: 13px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: none;
+    }
+
+    .totals {
+      font-size: 13px;
+      text-align: right;
+      line-height: 1.4;
+      color: #333;
+      min-width: 160px;
+    }
+
+    .totals strong {
+      font-size: 14px;
+      color: #000;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      padding: 6px 14px;
+      font-size: 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      background: #f1f1f1;
+    }
+
+    .draft-btn {
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+
+    .save-btn {
+      background: #2563eb;
+      color: white;
+    }
+
+    i.fas.fa-times {
+      font-size: 16px;
+      color: #999;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <div class="header">
+        <h2>View Invoice</h2>
+        <i class="fas fa-times"></i>
+      </div>
+
+      <div class="details-section">
+        <div class="details-box">
+          <h4>Personal detail</h4>
+          <p><strong>Customer*</strong><br>Nikhil Sharma</p>
+          <p><strong>Email</strong><br>Nikhil.Sharma2@Larsentoubro.Com</p>
+          <p><strong>Bill to</strong><br>Bryan@Bizlem.Com</p>
+        </div>
+        <div class="details-box">
+          <h4>Invoice details</h4>
+          <p><strong>Invoice Number</strong><br>#Invc00011591</p>
+          <p><strong>Terms</strong><br>Net30</p>
+          <p><strong>Invoice Date</strong><br>23-03-2025</p>
+          <p><strong>Due Date</strong><br>23-03-2025</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>PRODUCT NAME</th>
+              <th>DESCRIPTION</th>
+              <th>QUANTITY</th>
+              <th>RATE</th>
+              <th>AMOUNT</th>
+              <th>MORE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Commissions</td>
+              <td>Commissions das...</td>
+              <td>1</td>
+              <td>$25</td>
+              <td>$25</td>
+              <td><i class="fas fa-ellipsis-v"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button><i class="fas fa-arrow-left"></i> Previous</button>
+        <span>1</span>
+        <button>Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="remarks-section">
+        <textarea placeholder="Write remarks .."></textarea>
+        <div class="totals">
+          <div>Sub total: $3000.00</div>
+          <div>Tax: $75.00</div>
+          <div>Total: $3075.00</div>
+          <div>Total paid: $0.00</div>
+          <div><strong>Total due amount: $3075.00</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+  <button class="Save-btn" onclick="history.back()">Close</button>
+      <button class="draft-btn">Draft</button>
+      <button class="save-btn">Save</button>
+    </div>
+  </div>
+</body>
+</html>

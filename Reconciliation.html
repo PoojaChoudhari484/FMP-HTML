@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reconciliation</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #f9fafc;
+    }
+     .btn-outline {
+            background: var(--bg-white);
+            border: 1px solid #ccc;
+            color: var(--text-color);
+            padding: 10px 15px; /* Adjusted padding */
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex; /* For icon alignment */
+            align-items: center;
+            gap: 6px; /* Space between icon and text */
+        }
+
+        .btn-outline i {
+            font-size: 14px; /* Icon size for outline buttons */
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f0f0;
+            border-color: var(--primary-blue);
+        }
+
+        .search-section {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom:5px;
+            border: 1px solid #ccc; /* Use a variable for consistency */
+            border-radius: 8px;
+            padding: 5px 15px;
+            background-color: var(--bg-white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .search-section i {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .search-section input[type="text"] {
+            flex: 1;
+            padding: 8px 0;
+            border-radius: 0;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+/* 
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      padding: 0 20px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header .left,
+    .header .right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header .logo {
+      height: 30px;
+    }
+
+    .header button,
+    .header select {
+      border: none;
+      background: #f2f4f7;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .header img.profile {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    } */
+
+    .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px; /* Slightly taller header */
+  padding: 0 30px; /* More horizontal padding */
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0; /* Softer border */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05); /* Enhanced shadow for depth */
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Increased gap */
+}
+
+.logo {
+  width: 38px; /* Slightly larger logo */
+  height: 38px;
+}
+
+.menu-toggle {
+  background-color: #f1f5f9;
+  border: none;
+  border-radius: 10px; /* Softer corners */
+  padding: 10px; /* More padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for a subtle press effect */
+}
+
+.menu-toggle img {
+  width: 20px; /* Slightly larger icon */
+  height: 20px;
+}
+
+.menu-toggle:hover {
+  background-color: #e0e7ff;
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.menu-toggle:active {
+  transform: translateY(0); /* Press effect */
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Increased gap */
+}
+
+.header-btn {
+  background-color: #e6f0ff; /* Lighter blue background */
+  border: none;
+  padding: 10px 18px; /* More padding */
+  border-radius: 12px; /* Softer corners */
+  color: #2563eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 15px; /* Consistent font size */
+  display: flex; /* Allows centering of icon/text if needed */
+  align-items: center;
+  justify-content: center;
+              gap: 8px; /* Spacing between icon and text */
+
+}
+
+
+.header-btn:hover {
+  background-color: #dbeafe;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+.header-btn1:hover {
+  background-color: #dbeafe;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+.dropdown {
+  padding: 12px 20px; /* More padding */
+  margin-top: 1px;
+  border: 1px solid #cdd5e1; /* Slightly darker border */
+  border-radius: 8px; /* Softer corners */
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none; /* Removes default dropdown arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563eb%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px; /* Space for custom arrow */
+}
+
+.dropdown:hover {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Focus-like glow on hover */
+}
+
+.profile-pic {
+  width: 40px; /* Slightly larger profile pic */
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #a8c8f8; /* A subtle border */
+  transition: transform 0.2s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+
+    
+
+    .container {
+      padding: 10px;
+      height: calc(100vh - 40px);
+      overflow: hidden;
+    }
+
+    .box {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      color: #2f73f2;
+      margin-bottom: 20px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    select, input[type="date"], input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .reconcile-box {
+      background: #f4f4f4;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 1px;
+    }
+
+    .reconcile-box .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reconcile-box span {
+      font-size: 14px;
+    }
+
+    .diff {
+      color: red;
+      font-weight: bold;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .controls input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      flex: 1;
+    }
+
+    .controls .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .controls button {
+      padding: 8px 14px;
+      border: none;
+      background: #e0e7ff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #f4f6f8;
+    }
+
+    tbody tr:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+
+    .amount {
+      color: red;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    .footer button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-close {
+      background-color: #e5e5e5;
+    }
+
+    .btn-reconcile {
+      background-color: #2f73f2;
+      color: white;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pagination button {
+      border: none;
+      background: #eee;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pagination span {
+      font-weight: bold;
+    }
+    
+    /* Additional Pagination Style */
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1px 0;
+      margin-top: 1px;
+    }
+
+    .pagination button {
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: var(--bg-white);
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .pagination button:hover:not(.active) {
+      background-color: #f0f0f0;
+      border-color: #aaa;
+    }
+
+    .pagination button.active {
+      background: var(--primary-blue);
+      color: white;
+      border-color: var(--primary-blue);
+    }
+
+    .pagination span {
+      display: flex;
+      gap: 5px;
+    }
+
+    .pagination span button {
+      min-width: 35px;
+      text-align: center;
+    }
+
+    .header-btn1 {
+  /* display: flex; */
+  /* align-items: center; */
+  width: 50%;
+  /* gap: 6px; space between icon and text */
+  border: none;
+  background-color: #e6f0ff; /* Lighter blue background */
+  padding: 6px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+    color: #2563eb;
+
+  font-size: 14px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="left-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+      <button class="menu-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+      </button>
+    </div>
+
+    <div class="right-section">
+<button class="header-btn1">
+  <span>⚙️</span> Generate
+</button>
+
+      <button class="header-btn">💬</button>
+      <button class="header-btn">🔔</button>
+
+      <select class="dropdown">
+        <option selected>Bangalore</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+      </select>
+
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <h2>Reconciliation</h2>
+
+      <div class="row">
+        <div style="flex: 1;">
+          <label>Account</label>
+          <select>
+            <option>Cash</option>
+          </select>
+        </div>
+        <div style="flex: 1;">
+          <label>Date</label>
+          <input type="date" value="2025-03-23"/>
+        </div>
+      </div>
+
+      <div class="reconcile-box">
+        <div class="row">
+          <div>Current balance <input type="text" value="$2000" /></div>
+          <div>Calculated balance <input type="text" value="$1500" /></div>
+          <div>Difference <input class="diff" type="text" value="$500" /></div>
+        </div>
+      </div>
+
+        <div class="search-section">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search" />
+                <button class="btn-outline"><i class="fas fa-filter"></i> Filter</button>
+                <button class="btn-outline"><i class="fas fa-sort"></i> Sort</button>
+            </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>CATEGORY</th>
+            <th>DESCRIPTION</th>
+            <th>DATE</th>
+            <th>AMOUNT</th>
+            <th>RUNNING BALANCE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🥦 Groceries</td>
+            <td>Wholefoods</td>
+            <td>31-03-2022</td>
+            <td class="amount">- $10.00</td>
+            <td>$120.00</td>
+          </tr>
+          <tr>
+            <td>🚗 Automobile</td>
+            <td>Gasoline</td>
+            <td>29-03-2022</td>
+            <td class="amount">- $20.00</td>
+            <td>$130.00</td>
+          </tr>
+          <tr>
+            <td>🎬 Movies & Video</td>
+            <td>Netflix</td>
+            <td>27-03-2022</td>
+            <td class="amount">- $5.00</td>
+            <td>$150.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <button id="prevBtn">&larr; Previous</button>
+        <span id="pages">
+          <button class="active">1</button>
+          <button >2</button>
+         
+        </span>
+        <button id="nextBtn">Next &rarr;</button>
+      </div>
+      <!-- <button class="btn-close">Close</button>
+      <button class="btn-reconcile">Reconcile</button> -->
+        <div class="buttons">
+        <!-- <button class="close-btn">Close</button> -->
+                     <button class="Save-btn" onclick="history.back()">Close</button>
+
+
+        <button class="pay-btn">Reconcile</button>
+      </div>
+    </div>
+  </div>
+  <style>
+    .buttons {
+  display: flex;
+  text-align: center;
+  padding-left: 43%;
+  gap: 50px;
+}
+
+.close-btn,
+.pay-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  background-color: #2f73f2;
+}
+.pay-btn1 {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #2f73f2;
+  border-color: #2f73f2;
+}
+  </style>
+</body>
+</html>

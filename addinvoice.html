@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Invoice</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+    }
+
+    .invoice-container {
+      background: #fff;
+      max-width: 960px;
+      height: 85vh;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .grid input,
+    .grid select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .table-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    table th, table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+    }
+
+    .remarks {
+      resize: none;
+      height: 50px;
+      padding: 8px;
+      font-size: 13px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .totals {
+      font-size: 13px;
+      text-align: right;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .totals strong {
+      font-size: 14px;
+      color: #000;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .buttons button {
+      padding: 8px 14px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buttons .Save-btn {
+      background-color: #e0e0e0;
+    }
+
+    .buttons .draft-btn {
+      background-color: #f3f3f3;
+    }
+
+    .buttons .save-btn {
+      background-color: #2563eb;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <h2>Add Invoice</h2>
+
+    <div class="grid">
+      <select>
+        <option selected>Customer*</option>
+        <option>Nikhil Sharma</option>
+      </select>
+      <input type="text" placeholder="Invoice number" value="#invc00011591">
+      <input type="email" placeholder="Email" value="nikhil.sharma2@larsentoubro.com">
+      <select>
+        <option selected>Net 30</option>
+      </select>
+      <input type="text" placeholder="Bill to" value="bryan@bizlem.com">
+      <input type="date" value="2025-03-23">
+      <input type="date" value="2025-03-23">
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>PRODUCT NAME</th>
+            <th>DESCRIPTION</th>
+            <th>QUANTITY</th>
+            <th>RATE</th>
+            <th>AMOUNT</th>
+            <th>MORE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commissions</td>
+            <td>Commission..</td>
+            <td>1</td>
+            <td>25</td>
+            <td>$25.00</td>
+            <td><i class="fas fa-ellipsis-h"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <textarea class="remarks" placeholder="Write remarks .."></textarea>
+
+    <div class="totals">
+      <div>Sub total: $3000.00</div>
+      <div>Tax: $75.00</div>
+      <div>Total: $3075.00</div>
+      <div>Total paid: $0.00</div>
+      <div><strong>Total due amount: $3075.00</strong></div>
+    </div>
+
+    <div class="buttons">
+      <!-- <button class="Save-btn">Close</button>
+      <button class="draft-btn">Close</button> -->
+      <div class="buttons">
+  <button class="Save-btn" onclick="history.back()">Close</button>
+  <!-- <button class="draft-btn" onclick="history.back()">Close</button> -->
+  <button class="save-btn">Save</button>
+</div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your INVOICE</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      
+        :root {
+            --primary-blue: #2e6cff;
+            --light-blue: #eef4ff;
+            --dark-blue: #1a53d3;
+            --text-color: #333;
+            --light-text: #4a5568;
+            --border-color-light: #eee; /* Lighter border color */
+            --border-color-medium: #e0e0e0; /* Medium border color */
+            --bg-light: #f5f7fa;
+            --bg-white: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.08);
+        }
+
+        /* Global settings to remove page scroll */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevents global page scroll */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+        }
+
+        /* Top Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 65px;
+            padding: 0 30px;
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color-medium);
+            box-shadow: 0 2px 8px var(--shadow-light);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 35px;
+            height: 35px;
+        }
+
+        .menu-toggle {
+            background-color: transparent;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .menu-toggle img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .menu-toggle:hover {
+            background-color: #f0f0f0;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-btn {
+            background-color: #e6f0ff; /* Lighter blue background */
+            border: none;
+            padding: 10px 18px; /* More padding */
+            border-radius: 12px; /* Softer corners */
+            color: #2563eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 15px; /* Consistent font size */
+            display: flex; /* Allows centering of icon/text if needed */
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Spacing between icon and text */
+        }
+
+        .header-btn:hover {
+            background-color: #dbeafe;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+        }
+        
+        .header-btn i {
+            font-size: 16px;
+        }
+
+        .header-icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-icon-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+      .dropdown {
+    padding: 12px 20px;
+    margin-top: 1px;
+    border: 1px solid #cdd5e1;
+    border-radius: 8px;
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563eb%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+.dropdown:hover {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+     .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a8c8f8;
+    transition: transform 0.2s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 65px; /* Aligns below the header */
+            width: 60px;
+            height: calc(100% - 65px); /* Occupies remaining height */
+            background: var(--bg-white);
+            box-shadow: 3px 0 15px var(--shadow-medium);
+            overflow-x: hidden;
+            transition: width 0.3s ease;
+            padding-top: 15px;
+            z-index: 90; /* Below header, above main content */
+        }
+
+        .sidebar:hover {
+            width: 280px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: var(--light-text);
+            transition: background 0.3s ease, color 0.3s ease;
+            gap: 15px;
+            white-space: nowrap;
+        }
+
+        .sidebar ul li a i {
+            font-size: 18px;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .sidebar ul li a span {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar:hover ul li a span {
+            display: inline;
+            opacity: 1;
+        }
+
+        .sidebar ul li:hover > a {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .sidebar ul li.selected > a {
+            background-color: #dbeafe;
+            color: var(--primary-blue);
+            font-weight: 600;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 16px;
+        }
+
+        /* Invoice submenu styles - Hidden by default, shown with 'menu-expanded' class */
+        .invoice-submenu {
+            background: #fdfdfd;
+            margin: 0;
+            padding-left: 40px;
+            display: none; /* Hide by default */
+            list-style: disc;
+            color: #ccc;
+        }
+
+        /* Show invoice submenu when parent LI has 'menu-expanded' class */
+        .sidebar ul li.menu-expanded > .invoice-submenu {
+            display: block;
+        }
+        
+        .invoice-submenu li a {
+            font-size: 13px; /* Smaller font for submenu items */
+            padding: 8px 0; /* Adjust padding for submenu items */
+            gap: 0; /* Remove gap for submenu items */
+            padding-left: 10px; /* Indent submenu items */
+            border-left: none; /* Remove border for submenu items */
+        }
+
+        .invoice-submenu li.selected a {
+            font-weight: 700;
+            color: var(--dark-blue); /* Darker blue for selected submenu item */
+            background-color: #e0eaff; /* Lighter background for selected submenu */
+        }
+
+
+        /* Main Content Styles - Crucial for centering and height management */
+        main {
+            margin-left: 60px; /* Space for collapsed sidebar */
+            margin-top: 65px; /* Space for fixed header */
+            height: calc(100vh - 65px); /* Occupies remaining viewport height */
+            width: calc(100% - 60px); /* Occupies remaining width */
+            padding: 30px; /* Padding around the customer summary */
+            box-sizing: border-box; /* Include padding in height/width calculation */
+            transition: margin-left 0.3s ease;
+
+            /* Centering the content (customer-summary) */
+            display: flex;
+            align-items: center; /* Vertical centering */
+            justify-content: center; /* Horizontal centering */
+            /* If content is too large, it will be clipped due to body overflow:hidden */
+            overflow: hidden; /* Ensure main itself doesn't scroll if content is too large for the centered area */
+        }
+
+        .sidebar:hover ~ main {
+            margin-left: 280px;
+            width: calc(100% - 280px); /* Adjust width when sidebar expands */
+        }
+
+        /* Customer Summary Styles - No internal scrolling, height adjusts to content */
+        .customer-summary {
+            background: var(--bg-white);
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            /* Removed max-height and overflow-y: auto */
+            width: 100%; /* Ensure it takes full width of main's content area */
+            max-width: 1200px; /* Optional: limit max width for better readability */
+            box-sizing: border-box; /* Include padding in dimensions */
+            flex-shrink: 0; /* Prevents it from shrinking too much if space is constrained */
+            /* The height will now be determined by its content */
+        }
+        
+        .customer-summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px; /* Space below the header line */
+        }
+
+        .customer-summary-header h2 {
+            margin: 0; /* Remove default margin */
+            font-size: 26px; /* Adjust font size if needed */
+        }
+
+        /* Adjustments for elements within customer-summary to prevent unwanted space */
+        .customer-summary h2 {
+            margin-top: 0; /* Remove top margin from first element for cleaner layout */
+        }
+        .customer-summary .pagination {
+            margin-bottom: 0; /* Remove bottom margin from last element for cleaner layout */
+        }
+
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            /* Removed margin-bottom here as it's now controlled by .customer-summary-header */
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            background-color: var(--primary-blue);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex; /* For icon alignment */
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 15px; /* Icon size for regular buttons */
+        }
+
+        .btn-outline {
+            background: var(--bg-white);
+            border: 1px solid #ccc;
+            color: var(--text-color);
+            padding: 10px 15px; /* Adjusted padding */
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex; /* For icon alignment */
+            align-items: center;
+            gap: 6px; /* Space between icon and text */
+        }
+
+        .btn-outline i {
+            font-size: 14px; /* Icon size for outline buttons */
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f0f0;
+            border-color: var(--primary-blue);
+        }
+
+        .search-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color-medium); /* Use a variable for consistency */
+            border-radius: 8px;
+            padding: 8px 15px;
+            background-color: var(--bg-white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .search-section i {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .search-section input[type="text"] {
+            flex: 1;
+            padding: 8px 0;
+            border-radius: 0;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color-light); /* Single, lighter outer border for the table */
+            border-radius: 8px; /* Apply border-radius to the table itself */
+            overflow: hidden; /* Ensures border-radius clips content */
+        }
+
+        thead th {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 15px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color-light); /* Lighter border for header rows */
+        }
+
+        /* Remove individual cell border-radius as it's on the table now */
+        thead th:first-child {
+            border-top-left-radius: 0;
+        }
+        thead th:last-child {
+            border-top-right-radius: 0;
+        }
+
+
+        tbody td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color-light); /* Lighter border for rows */
+            font-size: 14px;
+            color: #444;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none; /* No border for the last row */
+        }
+
+        tbody tr:hover {
+            background-color: #fcfdff;
+        }
+
+        tbody td img {
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        tbody td .fas {
+            margin-right: 10px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.2s ease;
+        }
+
+        tbody td .fas:hover {
+            color: var(--primary-blue);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-top: 25px; /* Add margin above pagination if needed */
+        }
+
+        .pagination button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: var(--bg-white);
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .pagination button:hover:not(.active) {
+            background-color: #f0f0f0;
+            border-color: #aaa;
+        }
+
+        .pagination button.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .pagination span {
+            display: flex;
+            gap: 5px;
+        }
+
+        .pagination span button {
+            min-width: 35px;
+            text-align: center;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+             /* Enable scrolling for the modal content if it overflows */
+            overflow-y: auto;
+            overflow: hidden;
+        }
+
+        .modal-content {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            /* Removed fixed width, will use max-width and flex-shrink */
+            width: 90%; /* Take 90% of modal width */
+            max-width: 1000px; /* Adjusted max-width for invoice form */
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease-out;
+            box-sizing: border-box; /* Include padding in width */
+            flex-shrink: 0; /* Prevent shrinking below content size */
+            margin: 20px 0; /* Add vertical margin for better spacing on scroll */
+        }
+        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #777;
+            transition: color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: var(--text-color);
+        }
+
+        /* Styles for the "Add Invoice" form */
+        .invoice-container {
+            background: white; /* This will be within .modal-content, so background is already handled */
+            /* Removed max-width, margin, padding, border-radius, box-shadow as .modal-content handles them */
+            padding: 0; /* Reset padding from the original .invoice-container if it's nested */
+            box-shadow: none; /* Remove redundant shadow */
+
+        }
+        .invoice-container h2 {
+            /* This h2 is part of the modal-content h2, no specific style needed here */
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .grid input,
+        .grid select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+            margin-bottom: 1px;
+        }
+        .invoice-container table, .invoice-container th, .invoice-container td {
+            border: 1px solid #e0e0e0;
+        }
+        .invoice-container th, .invoice-container td {
+            padding: 10px;
+            text-align: left;
+        }
+        .invoice-container th {
+            background-color: #f5f5f5;
+        }
+        .remarks {
+            width: 100%;
+            height: 30px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .totals {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .totals div {
+            margin: 5px 0;
+        }
+        .totals strong {
+            font-size: 1.1em;
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .buttons .close-btn {
+            background-color: #e0e0e0;
+            color: #555;
+        }
+        .buttons .close-btn:hover {
+            background-color: #ccc;
+        }
+        .buttons .draft-btn {
+            background-color: #f3f3f3;
+            color: #444;
+        }
+        .buttons .draft-btn:hover {
+            background-color: #e9e9e9;
+        }
+        .buttons .save-btn {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+        .buttons .save-btn:hover {
+            background-color: var(--dark-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+    <div class="left-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+      <button class="menu-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+      </button>
+    </div>
+
+    <div class="right-section">
+      <button class="header-btn">⚙️ Genrate</button>
+      <button class="header-btn">💬</button>
+      <button class="header-btn">🔔</button>
+
+      <select class="dropdown">
+        <option selected>Bangalore</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+      </select>
+
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+  </div>
+
+ 
+
+    <main>
+        <section class="customer-summary">
+            <div class="customer-summary-header">
+                <h2>Your Invoice</h2>
+                <div class="action-buttons">
+                    <button class="btn" id="uploadBtn"><i class="fas fa-cloud-upload-alt"></i> Upload</button>
+                    <button class="btn" id="addInvoiceBtn"><i class="far fa-file-alt"></i> Add Invoice</button>
+                </div>
+            </div>
+
+            <div class="search-section">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search" />
+                <button class="btn-outline"><i class="fas fa-filter"></i> Filter</button>
+                <button class="btn-outline"><i class="fas fa-sort"></i> Sort</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>INVOICE...</th>
+                        <th>INVOICE...</th>
+                        <th>DUE DATE</th>
+                        <th>TERMS</th>
+                        <th>LOCATION</th>
+                        <th>ITEM</th>
+                        <th>TOTAL A...</th>
+                        <th>STATUS</th>
+                        <th>MORE</th>
+
+                    </tr>
+                </thead>
+                <tbody id="customerTable">
+                    <tr> 
+                        <td><img src="https://i.pravatar.cc/30?u=arun"> Arun Arora</td>
+                        <td>Invc0001</td>
+                        <td>21-04-2...</td>
+                        <td>25-04-2...</td>
+                        <td>Net30</td>
+                        <td>Location1</td>
+                        <td>1</td>
+                        <td>200</td>
+                        <td>Pending</td>
+
+                        <td>
+                            <i class="fas fa-ellipsis-v"></i>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqkUYrITWyI8OhPNDHoCDUjGjhg8w10_HRqg&s"> Bran Biz...</td>
+                        <td>Invc0001</td>
+                        <td>21-04-2...</td>
+                        <td>25-04-2...</td>
+                        <td>Net30</td>
+                        <td>Location1</td>
+                        <td>1</td>
+                        <td>400</td>
+                        <td>Paid</td>
+
+                        <td>
+                            <i class="fas fa-ellipsis-v"></i>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://i.pravatar.cc/30?u=arun"> Arun Arora</td>
+                        <td>Invc0001</td>
+                        <td>21-04-2...</td>
+                        <td>25-04-2...</td>
+                        <td>Net30</td>
+                        <td>Location1</td>
+                        <td>1</td>
+                        <td>200</td>
+                        <td>Pending</td>
+
+                        <td>
+                            <i class="fas fa-ellipsis-v"></i>
+                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button id="prevBtn">&larr; Previous</button>
+                <span id="pages">
+                    <button>1</button>
+                    <button class="active">2</button>
+                    <button>3</button>
+                    <button>...</button>
+                    <button>10</button>
+                </span>
+                <button id="nextBtn">Next &rarr;</button>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="addInvoiceModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeInvoiceModal">&times;</span>
+            <div class="invoice-container">
+                <h2>Add Invoice</h2>
+                <div class="grid">
+                    <select>
+                        <option selected>Customer*</option>
+                        <option>Nikhil Sharma</option>
+                    </select>
+                    <input type="text" placeholder="Invoice number" value="#invc00011591">
+                    <input type="email" placeholder="Email" value="nikhil.sharma2@larsentoubro.com">
+                    <select>
+                        <option selected>Net 30</option>
+                    </select>
+                    <input type="text" placeholder="Bill to" value="bryan@bizlem.com">
+                    <input type="date" value="2025-03-23">
+                    <input type="date" value="2025-03-23">
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PRODUCT NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>QUANTITY</th>
+                            <th>Status</th>
+                            <th>More</th>
+                            <th>RATE</th>
+                            <th>Amount</th>
+                            <th>More</th>
+
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Commissions</td>
+                            <td>Commission..</td>
+                            <td>1</td>
+                            <td>25</td>
+                            <td>$25.00</td>
+                            <td><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <textarea class="remarks" placeholder="Write remarks .."></textarea>
+
+                <div class="totals">
+                    <div>Sub total: $3000.00</div>
+                    <div>Tax: $75.00</div>
+                    <div>Total: $3075.00</div>
+                    <div>Total paid: $0.00</div>
+                    <div><strong>Total due amount: $3075.00</strong></div>
+                </div>
+
+                <div class="buttons">
+                    <button class="close-btn1" id="closeInvoiceModal2">Close</button>
+                    <button class="draft-btn">Draft</button>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const addInvoiceBtn = document.getElementById("addInvoiceBtn");
+        const addInvoiceModal = document.getElementById("addInvoiceModal");
+        const closeInvoiceModal1 = document.getElementById("closeInvoiceModal");
+        const closeInvoiceModal2 = document.getElementById("closeInvoiceModal2");
+       
+
+        addInvoiceBtn.addEventListener("click", () => {
+            addInvoiceModal.style.display = "flex";
+        });
+
+        closeInvoiceModal1.addEventListener("click", () => {
+            addInvoiceModal.style.display = "none";
+        });
+
+        closeInvoiceModal2.addEventListener("click", () => {
+            addInvoiceModal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === addInvoiceModal) {
+                addInvoiceModal.style.display = "none";
+            }
+        });
+
+        // New JavaScript for Sidebar Invoice Submenu
+        const sidebarMenuItems = document.querySelectorAll('#sidebar > ul > li'); // Get all top-level menu items
+        const invoiceMenuItem = document.getElementById('invoiceMenuItem'); // Get the specific Invoice LI
+
+        // Function to remove 'selected' and 'menu-expanded' from all items
+        function resetSidebarSelection() {
+            sidebarMenuItems.forEach(li => {
+                li.classList.remove('selected');
+                if (li === invoiceMenuItem) {
+                    li.classList.remove('menu-expanded');
+                }
+            });
+        }
+
+        sidebarMenuItems.forEach(item => {
+            item.addEventListener('click', function(event) {
+                // Prevent default link behavior for parent menu items that control submenus
+                const clickedLink = this.querySelector('a');
+                if (clickedLink && clickedLink.getAttribute('href') === '#') {
+                    event.preventDefault();
+                }
+
+                // If the clicked item is the invoice menu item
+                if (this === invoiceMenuItem) {
+                    // If it's already selected, and we click it again, toggle both selected and expanded
+                    if (this.classList.contains('selected')) {
+                        this.classList.toggle('menu-expanded');
+                        // If it's no longer expanded, deselect it too
+                        if (!this.classList.contains('menu-expanded')) {
+                            this.classList.remove('selected');
+                        }
+                    } else {
+                        // If it's not selected, make it selected and expand it
+                        resetSidebarSelection(); // Deselect others first
+                        this.classList.add('selected');
+                        this.classList.add('menu-expanded');
+                    }
+                } else {
+                    // If another item is clicked
+                    resetSidebarSelection(); // Deselect all including invoice menu item
+                    this.classList.add('selected'); // Select the new item
+                }
+            });
+        });
+
+        // Initialize the first item (Home) as selected on page load, and ensure invoice submenu is hidden
+        // This is a common pattern for initial active state. If you want nothing selected, remove this block.
+        const homeMenuItem = document.querySelector('#sidebar > ul > li:first-child');
+        if (homeMenuItem) {
+            homeMenuItem.classList.add('selected');
+        }
+        
+        // Ensure invoice submenu is hidden on load regardless of previous state (unless explicitly desired to be open)
+        if (invoiceMenuItem) {
+            invoiceMenuItem.classList.remove('menu-expanded');
+            // If you want 'Invoices' to be selected but its submenu *not* open on initial load:
+            // invoiceMenuItem.classList.add('selected'); 
+            // otherwise, it will only become selected and expanded on its first click.
+        }
+
+
+        //upload link
+        document.getElementById("uploadBtn").addEventListener("click", function(){
+        window.location.href = "uploadorg.html";
+
+    });
+
+
+    </script>
+    
+</body>
+</html>

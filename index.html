@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Welcome to Fetch My Payments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <div class="left-section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+        <button class="menu-toggle" id="menuToggle">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+        </button>
+    </div>
+
+    <div class="mobile-center-header-section">
+        <button class="header-icon-btn">⚙️</button>
+        <button class="header-icon-btn">💬</button>
+        <button class="header-icon-btn">🔔</button>
+    </div>
+
+    <div class="right-section">
+        <button class="header-btn desktop-generate-btn">⚙️ <span class="btn-text">Generate</span></button>
+        <button class="header-btn desktop-icon-btn">💬</button>
+        <button class="header-btn desktop-icon-btn">🔔</button>
+
+        <select class="dropdown desktop-location-dropdown">
+            <option selected>Bangalore</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+        </select>
+
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+
+    <div class="mobile-location-dropdown-container">
+        <select class="dropdown mobile-location-dropdown">
+            <option selected>Bangalore</option>
+            <option>Mumbai</option>
+            <option>Delhi</option>
+        </select>
+    </div>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li class="active"><a href="#"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a></li>
+        <li><a href="#"><i class="fas fa-qrcode"></i> <span class="nav-text">Dashboard</span></a></li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-users"></i> <span class="nav-text">Customers</span></span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#" id="Btncustomer">View Customers</a></li>
+                <li id="addCustomerBtn"><a href="#">Add Customers</a></li>
+                <li id="addUploadBtn"><a href="#">Upload Customers Data</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="far fa-file-alt" id="BtnYourInvoice"></i> <span class="nav-text">Invoices</span></span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li id="BtnViewInvoice"><a href="#">View Invoices</a></li>
+                <li><a href="#" id="addInvoiceBtn" >Add Invoice</a></li>
+                <li><a href="#" id="BtnUploadInvoice">Upload Invoice Data</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-bell"></i> <span class="nav-text">Reminders</span></span>
+                <span class="arrow-icon2"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">View Reminders</a></li>
+                <li><a href="#" id="BtnreminderList"> Reminder List</a></li>
+                <li><a href="#" id="BtnCreateReminder">Create Reminders</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-money-check-alt" ></i> <span class="nav-text">EMI</span></span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#" id="BtnViewEmi" >View EMI</a></li>
+                <li><a href="#" id="BtnADDEMI">Add EMI</a></li>
+                <li><a href="#" id="BtnUploadEMIDATA">Upload EMI Data</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="javascript:void(0)">
+                <span><i class="fas fa-donate" id="BtnTrackPayment"></i> <span class="nav-text">Payment Dashboard</span></span>
+                <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">Payment OCR Extraction</a></li>
+                <li><a href="#" id="BtnMakePayment">Make Payment</a></li>
+                <li><a href="#" id="BtnReconciliation">Bank Reconciliation</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#"><i class="fas fa-id-card-alt"></i><span class="nav-text">Customer Portal</span></a></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <div class="welcome-box">
+        <img src="https://assets-global.website-files.com/62c0b06b24a3174209c13b28/62c0b06b24a317e3efc13d07_hero-illustration-crm-template.svg" alt="Welcome Illustration" class="welcome-img" /> 
+        <h1>Welcome to <span style="color: #2D62EA;">fetch my payments</span></h1>
+        <p>Easily track and manage all your payments in one place</p>
+        <button id="getStartedBtn" class="get-started-btn">Let's get started</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const submenuItems = document.querySelectorAll('.has-submenu > a');
+
+    submenuItems.forEach(item => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault(); 
+            const parent = item.parentElement;
+            const arrow = item.querySelector('.arrow-icon i');
+
+            parent.classList.toggle('open');
+            if (arrow) {
+                arrow.classList.toggle('fa-chevron-down');
+                arrow.classList.toggle('fa-chevron-up');
+            }
+        });
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    // Toggle sidebar on menu button click (only on smaller screens)
+    menuToggle.addEventListener('click', () => {
+        if (window.innerWidth <= 992) {
+            sidebar.classList.toggle('active');
+            document.body.classList.toggle('no-scroll'); // Prevent body scroll
+        }
+    });
+
+    // Close sidebar when clicking on main content (only on smaller screens)
+    mainContent.addEventListener('click', () => {
+        if (sidebar.classList.contains('active') && window.innerWidth <= 992) {
+            sidebar.classList.remove('active');
+            document.body.classList.remove('no-scroll'); // Re-enable body scroll
+        }
+    });
+
+    // Handle window resize: Adjust sidebar and main-content for desktop/mobile
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) {
+            // If resizing to desktop, ensure sidebar is visible and mobile classes are removed
+            sidebar.classList.remove('active'); // Remove active class if it was set for mobile
+            sidebar.style.left = '0'; // Ensure it's explicitly at 0 for desktop
+            mainContent.style.marginLeft = '250px'; // Apply desktop margin
+            document.body.classList.remove('no-scroll'); // Ensure scroll is enabled
+        } else {
+            // If resizing to mobile/tablet, ensure sidebar is hidden and no desktop margin
+            sidebar.classList.remove('active'); // Ensure sidebar starts hidden
+            sidebar.style.left = '-250px'; // Explicitly set to off-screen
+            mainContent.style.marginLeft = '0'; // Remove desktop margin
+        }
+    });
+
+    // Initial check on page load to set correct sidebar/main-content state
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.innerWidth > 992) {
+            sidebar.style.left = '0';
+            mainContent.style.marginLeft = '250px';
+        } else {
+            sidebar.style.left = '-250px';
+            mainContent.style.marginLeft = '0';
+        }
+
+        // Existing DOMContentLoaded logic for active/selected menu items
+        const addInvoiceItem = document.querySelector('.submenu li.selected');
+        if (addInvoiceItem) {
+            addInvoiceItem.classList.remove('selected');
+        }
+
+        const homeItem = document.querySelector('.sidebar ul li:first-child');
+        if (homeItem) {
+            homeItem.classList.add('active');
+        }
+
+        const selectedSubmenuItem = document.querySelector('.submenu li.selected');
+        if (selectedSubmenuItem) {
+            selectedSubmenuItem.closest('.has-submenu').classList.add('open', 'active');
+            const arrow = selectedSubmenuItem.closest('.has-submenu').querySelector('.arrow-icon i');
+            if (arrow) {
+                arrow.classList.remove('fa-chevron-down');
+                arrow.classList.add('fa-chevron-up');
+            }
+        }
+    });
+
+    // Your existing navigation links
+    document.getElementById("getStartedBtn").addEventListener("click", function () { window.location.href = "nextpage.html"; });
+    document.getElementById("addCustomerBtn").addEventListener("click", function(){ window.location.href= "addcustomer.html"; });
+    document.getElementById("addUploadBtn").addEventListener("click", function(){ window.location.href= "uploadorg.html"; });
+    document.getElementById("Btncustomer").addEventListener("click", function(){ window.location.href= "customer.html"; });
+    document.getElementById("BtnViewInvoice").addEventListener("click", function(){ window.location.href= "viewinvoice.html"; });
+    document.getElementById("BtnYourInvoice").addEventListener("click", function(){ window.location.href= "yourinvoice.html"; });
+    document.getElementById("addInvoiceBtn").addEventListener("click", function(){ window.location.href= "addinvoice.html"; });
+    document.getElementById("BtnUploadInvoice").addEventListener("click", function(){ window.location.href= "uploadorg.html"; });
+    document.getElementById("BtnreminderList").addEventListener("click", function(){ window.location.href= "reminderlist.html"; });
+    document.getElementById("BtnCreateReminder").addEventListener("click", function(){ window.location.href= "remindercreate.html"; });
+    document.getElementById("BtnViewEmi").addEventListener("click", function(){ window.location.href= "EMIlist.html"; });
+    document.getElementById("BtnADDEMI").addEventListener("click", function(){ window.location.href= "addemi.html"; });
+    document.getElementById("BtnUploadEMIDATA").addEventListener("click", function(){ window.location.href= "uploadorg.html"; });
+    document.getElementById("BtnTrackPayment").addEventListener("click", function(){ window.location.href= "trackpayment.html"; });
+    document.getElementById("BtnMakePayment").addEventListener("click", function(){ window.location.href= "payment.html"; });
+    document.getElementById("BtnReconciliation").addEventListener("click", function(){ window.location.href= "Reconciliation.html"; });
+    // document.getElementById("Btnhome").addEventListener("click", function(){ window.location.href= "index.html"; }); // Uncomment if Btnhome exists
+</script>
+
+<style>
+:root {
+    /* Desktop Default Colors */
+    --primary-color: #007bff; /* Original primary color for desktop */
+    --primary-hover-color: #0056b3;
+    --sidebar-bg: #ffffff;
+    --text-color-dark: #333;
+    --text-color-light: #666;
+    --border-color: #e9ecef;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+
+    /* Mobile Specific Colors (from screenshot) */
+    --mobile-blue-bg: #EAF2FE;
+    --mobile-primary-color: #2D62EA;
+    --mobile-primary-hover-color: #1A4EB5;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Desktop default background */
+    display: flex; /* For desktop: header, sidebar, main-content are siblings */
+    flex-direction: row; /* Desktop layout */
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Helper class for body to prevent scroll when sidebar is open on mobile */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* --- DESKTOP STYLES (Default) --- */
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 30px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 38px;
+    height: 38px;
+    display: block; /* Visible on desktop */
+}
+
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+}
+
+/* Mobile-only elements hidden on desktop */
+.mobile-center-header-section,
+.mobile-location-dropdown-container {
+    display: none;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Desktop Header Buttons */
+.header-btn {
+    background-color: #e6f0ff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: #2563eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+    display: flex; /* Ensure button content is centered */
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevent "Generate" text from wrapping */
+}
+
+.header-btn:hover {
+    background-color: #dbeafe;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-text {
+    display: inline; /* Text is visible on desktop */
+    margin-left: 5px; /* Space between icon and text */
+}
+
+/* Desktop Dropdown */
+.dropdown.desktop-location-dropdown {
+    padding: 12px 20px;
+    margin-top: 1px;
+    border: 1px solid #cdd5e1;
+    border-radius: 8px;
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none; /* Hide default dropdown arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563eb%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Space for custom arrow */
+    display: block; /* Visible on desktop */
+}
+
+.dropdown.desktop-location-dropdown:hover {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a8c8f8; /* Desktop border */
+    transition: transform 0.2s ease;
+    box-shadow: none; /* No special halo on desktop */
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+/* Sidebar Styling (Desktop Default) */
+.sidebar {
+    position: fixed;
+    left: 0; /* Always visible on desktop */
+    top: 70px;
+    width: 250px;
+    height: calc(100vh - 70px);
+    background: var(--sidebar-bg);
+    box-shadow: 3px 0 15px var(--shadow-light);
+    overflow-y: auto;
+    padding-top: 20px;
+    transition: left 0.3s ease; /* For sliding effect */
+    z-index: 999;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar ul li {
+    position: relative;
+}
+
+.sidebar ul a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    padding: 12px 25px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.sidebar ul a i {
+    margin-right: 12px;
+    color: var(--text-color-light);
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar ul .nav-text {
+    flex-grow: 1;
+}
+
+.sidebar ul li:hover > a,
+.sidebar ul li.active > a {
+    background-color: #eef4ff;
+    color: var(--primary-color);
+    padding-left: 30px;
+}
+
+.sidebar ul li:hover > a i,
+.sidebar ul li.active > a i {
+    color: var(--primary-color);
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Submenu */
+.submenu {
+    background: #fdfdfd;
+    padding: 0;
+    border-left: 3px solid var(--primary-color);
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px 45px;
+    font-size: 14px;
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: none;
+}
+
+.submenu li a:hover {
+    background-color: #e0e7ff;
+    color: var(--primary-color);
+    padding-left: 50px;
+}
+
+.submenu li.selected a {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 0 5px 5px 0;
+    margin-right: 15px;
+    position: relative;
+}
+
+.submenu li.selected a::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--primary-hover-color);
+}
+
+li.open .submenu {
+    max-height: 500px;
+}
+
+/* Main Content (Desktop Default) */
+.main-content {
+    margin-left: 250px; /* Space for the fixed sidebar on desktop */
+    padding-top: 70px; /* Space for the fixed header */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+    background-color: #f0f2f5; /* Desktop default background */
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.welcome-box {
+    background-color: var(--sidebar-bg);
+    padding: 40px; /* Desktop padding */
+    border-radius: 15px;
+    box-shadow: 0 5px 25px var(--shadow-medium);
+    text-align: center;
+    max-width: 600px; /* Desktop max-width */
+    width: 100%;
+    animation: fadeInScale 0.8s ease-out;
+    margin-top: 0; /* Centered in available space */
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+
+.welcome-img {
+    max-width: 180px; /* Desktop image size */
+    height: auto;
+    margin-bottom: 25px;
+    animation: bounceIn 1s ease-out;
+}
+
+.welcome-box h1 {
+    font-size: 2.5em; /* Desktop heading size */
+    color: var(--text-color-dark);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.welcome-box h1 span {
+    color: var(--primary-color); /* Desktop primary color */
+}
+
+.welcome-box p {
+    font-size: 1.1em; /* Desktop paragraph size */
+    color: var(--text-color-light);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.get-started-btn {
+    background-color: var(--primary-color); /* Desktop primary color */
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.get-started-btn:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* Animations (remain same) */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+    from, 20%, 40%, 60%, 80%, to { animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+    0% { opacity: 0; transform: scale3d(0.3, 0.3, 0.3); }
+    20% { transform: scale3d(1.1, 1.1, 1.1); }
+    40% { transform: scale3d(0.9, 0.9, 0.9); }
+    60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
+    80% { transform: scale3d(0.97, 0.97, 0.97); }
+    to { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+
+/* --- MOBILE & TABLET RESPONSIVE STYLES (Max-width 992px) --- */
+@media (max-width: 992px) { /* This breakpoint covers most tablets and large mobiles */
+    body {
+        background-color: var(--mobile-blue-bg); /* Mobile background */
+        flex-direction: column; /* Stack header, dropdown, main content */
+    }
+
+    /* Header adjustments for mobile/tablet */
+    .header {
+        flex-wrap: wrap; /* Allow sections to wrap */
+        height: auto; /* Auto height to accommodate dropdown below on mobile */
+        padding: 10px 15px; /* Tighter padding */
+        padding-bottom: 0; /* Remove bottom padding here as dropdown is separate */
+        align-items: flex-start; /* Align items to the top to prevent stretching */
+    }
+
+    .left-section {
+        order: 1;
+        flex-grow: 0;
+        width: auto;
+        gap: 0; /* Remove gap around menu toggle */
+    }
+    .logo {
+        display: none; /* Hide logo on mobile */
+    }
+    .menu-toggle {
+        display: block; /* Show menu toggle on mobile */
+        background-color: transparent; /* No background as per screenshot */
+        padding: 0; /* No padding */
+    }
+    .menu-toggle img {
+        width: 24px; /* Larger icon */
+        height: 24px;
+        filter: brightness(0.5); /* Make it darker */
+    }
+
+    /* Mobile-only centered icons visible on mobile */
+    .mobile-center-header-section {
+        display: flex;
+        order: 2; /* Center in header row */
+        flex-grow: 1; /* Take up space */
+        justify-content: center; /* Center icons within it */
+        gap: 8px; /* Gap between icons */
+    }
+    .header-icon-btn { /* Style for mobile centered icons */
+        background-color: transparent;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: #888; /* Softer icon color */
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+    }
+    .header-icon-btn:hover {
+        background-color: #f0f0f0;
+    }
+
+    .right-section {
+        order: 3;
+        margin-left: auto; /* Push to right */
+        gap: 8px; /* Reduced gap */
+        width: auto;
+    }
+
+    /* Hide desktop-specific elements on mobile */
+    .desktop-generate-btn,
+    .desktop-icon-btn,
+    .dropdown.desktop-location-dropdown {
+        display: none;
+    }
+
+    .profile-pic {
+        width: 35px;
+        height: 35px;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 2px #d0e0ff; /* Light blue halo */
+    }
+
+    /* Mobile-only location dropdown container visible on mobile */
+    .mobile-location-dropdown-container {
+        display: flex;
+        width: 100%; /* Take full width */
+        padding: 10px 15px; /* Match header horizontal padding */
+        box-sizing: border-box;
+        background-color: #ffffff; /* Match header background */
+        border-bottom: 1px solid #e0e0e0; /* Still a border */
+        position: static; /* Let it flow normally below header */
+        justify-content: center; /* Center the dropdown */
+    }
+    .dropdown.mobile-location-dropdown {
+        width: 100%; /* Fill container */
+        max-width: 400px; /* Limit width of dropdown on larger mobile/tablet */
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        color: #333;
+        font-weight: 500;
+        background-color: #f7f7f7;
+        appearance: none;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E');
+        background-position: right 12px center;
+        background-size: 10px;
+        padding-right: 35px;
+    }
+
+    /* Sidebar for mobile/tablet */
+    .sidebar {
+        left: -250px; /* Hidden by default */
+        width: 250px; /* Width when sliding out */
+        height: 100vh; /* Full height */
+        top: 0; /* Starts from top */
+        padding-top: 70px; /* Space for fixed header */
+        box-shadow: none; /* No shadow when hidden */
+    }
+    .sidebar.active {
+        left: 0; /* Slide in */
+        box-shadow: 3px 0 15px var(--shadow-light); /* Shadow when active */
+    }
+
+    /* Main Content for mobile/tablet */
+    .main-content {
+        margin-left: 0; /* No margin on mobile */
+        padding-top: 130px; /* Header (70px) + mobile dropdown (approx 60px) */
+        justify-content: flex-start; /* Align content to top */
+        background-color: var(--mobile-blue-bg); /* Mobile background */
+        height: auto; /* Allow height to adjust to content */
+        min-height: calc(100vh - 130px); /* Fill remaining viewport */
+    }
+
+    .welcome-box {
+        padding: 35px 25px; /* Smaller padding */
+        max-width: 350px; /* Specific max-width for mobile screenshot */
+        width: 90%; /* Responsive width */
+        margin-top: 20px; /* Space from dropdown */
+        margin-bottom: 20px;
+    }
+
+    .welcome-img {
+        max-width: 150px; /* Smaller image */
+    }
+
+    .welcome-box h1 {
+        font-size: 1.5em; /* Smaller heading */
+        margin-bottom: 10px;
+    }
+    .welcome-box h1 span {
+        color: var(--mobile-primary-color); /* Mobile primary color for text highlight */
+    }
+    .welcome-box p {
+        font-size: 0.9em; /* Smaller paragraph */
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .get-started-btn {
+        background-color: var(--mobile-primary-color); /* Mobile primary color for button */
+        padding: 12px 30px;
+        border-radius: 10px; /* More rectangular */
+        font-size: 0.9em;
+        font-weight: 500;
+        box-shadow: 0 3px 10px rgba(45, 98, 234, 0.3); /* Subtle shadow */
+    }
+    .get-started-btn:hover {
+        background-color: var(--mobile-primary-hover-color);
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(45, 98, 234, 0.4);
+    }
+}
+
+/* Further fine-tuning for very small mobile screens (e.g., iPhone SE) */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+    .right-section {
+        gap: 5px;
+    }
+    .header-icon-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    .profile-pic {
+        width: 30px;
+        height: 30px;
+    }
+    .mobile-location-dropdown-container {
+        padding: 8px 10px;
+    }
+    .dropdown.mobile-location-dropdown {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+    .welcome-box {
+        padding: 30px 20px;
+    }
+    .welcome-box h1 {
+        font-size: 1.3em;
+    }
+    .welcome-box p {
+        font-size: 0.8em;
+    }
+    .get-started-btn {
+        padding: 10px 25px;
+        font-size: 0.85em;
+    }
+}
+</style>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Go To Customer</title>
+  <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!--Top Content -->
+  <div class="header">
+    <div class="left-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+      <button class="menu-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+      </button>
+    </div>
+
+    <div class="right-section">
+      <button class="header-btn">⚙️ Genrate</button>
+      <button class="header-btn">💬</button>
+      <button class="header-btn">🔔</button>
+
+      <select class="dropdown">
+        <option selected>Bangalore</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+      </select>
+
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="setup-container container mt-4">
+  <div class="row border rounded shadow-sm p-3">
+    <!--Dashboard left Section-->
+    <div class="col-md-4 border-end">
+  <h5 class="fw-bold">Let’s get started</h5>
+      <p class="text-muted">Let’s help you set up your account</p>
+ <div class="list-group">
+<button type="button" class="btn btn-outline-primary list-group-item list-group-item-action active">Create Your First Customer</button><br>
+<button type="button" class="btn btn-outline-primary">Create your first invoice</button><br>
+<button type="button" class="btn btn-outline-primary">Send your first reminder</button><br>
+<button type="button" class="btn btn-outline-primary">Verify your contacts</button><br>
+<button type="button" class="btn btn-outline-primary">Set up your payments</button><br>
+<button type="button" class="btn btn-outline-primary">Set up reconciliation</button><br>
+<button type="button" class="btn btn-outline-primary">Integrate with your ERP/CRM system</button><br>
+        
+      </div>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="col-md-6">
+      <h6 class="fw-bold mb-3">Create your first customer</h6>
+      <ul>
+        <li>Create your first customer by clicking on the icon highlights in yellow.</li>
+        <li>You will need to enter the name, email ID, phone number if you intend to send WhatsApp reminders.</li>
+        <li>All other details are optional.</li>
+      </ul>
+      <div class="mt-3">
+        <button class="btn btn-outline-primary me-2">Tutorial</button>
+        <button id="gotocustomer" class="btn btn-primary">Go to customer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.getElementById("gotocustomer").addEventListener("click", function(){
+        window.location.href = "customer.html";
+
+    });
+</script>
+
+</body>
+</html>

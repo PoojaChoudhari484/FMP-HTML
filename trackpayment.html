@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Payments</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="header">
+        <div class="left-section">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" class="logo" />
+            <button class="menu-toggle" id="menuToggle">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" />
+            </button>
+        </div>
+        <div class="right-section">
+            <button class="header-btn">⚙️ Generate</button>
+            <button class="header-btn">💬</button>
+            <button class="header-btn">🔔</button>
+            <select class="dropdown">
+                <option>Bangalore</option>
+                <option>Mumbai</option>
+                <option>Delhi</option>
+            </select>
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="profile-pic" />
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="payments-header">
+            <h1>Track your payments</h1>
+            <div class="header-buttons">
+                <button class="upload-btn">⬆️ Upload</button>
+                <button class="add-payment-btn" id="Btnaddpayment">➕ Add payment</button>
+            </div>
+        </div>
+
+        <div class="key-metrics">
+            <div class="metric-card">
+                <span class="metric-title">Total</span>
+                <span class="metric-value">$120.75</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Overdue</span>
+                <span class="metric-value">$44</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Received</span>
+                <span class="metric-value">$588</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Open invoice</span>
+                <span class="metric-value">1</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-title">Severely delayed</span>
+                <span class="metric-value">0</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">Key statistics</h2>
+
+        <div class="statistics-grid">
+            <div class="stat-card">
+                <span class="stat-title">DSO</span>
+                <span class="stat-value">0</span>
+                <span class="stat-change red">📉 10% from this last week</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">CEI</span>
+                <span class="stat-value">0</span>
+                <span class="stat-change red">📉 10% from this last week</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">Avg. days delinquent</span>
+                <span class="stat-value">0</span>
+                <span class="stat-change red">📉 10% from this last week</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">High risk account</span>
+                <span class="stat-value">0</span>
+                <span class="stat-change red">📉 10% from this last week</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-title">ART</span>
+                <span class="stat-value">0</span>
+                <span class="stat-change red">📉 10% from this last week</span>
+            </div>
+        </div>
+
+        <div class="table-controls">
+            <div class="search-box">
+                🔍 <input type="text" placeholder="Search">
+            </div>
+            <div class="table-buttons">
+                <button class="filter-btn">⚙️ Filter</button>
+                <button class="sort-btn">⇅ Sort</button>
+            </div>
+        </div>
+
+        <div class="payments-table-container">
+            <table class="payments-table">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>RECEIV...</th>
+                        <th>RECEI...</th>
+                        <th>OUTST...</th>
+                        <th>BANK</th>
+                        <th>INV NO</th>
+                        <th>DATE</th>
+                        <th>CURRE...</th>
+                        <th>PROO...</th>
+                        <th>VERIFI...</th>
+                        <th>MORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Arun Arora" class="user-avatar">
+                                <span>Arun Ar...</span>
+                            </div>
+                        </td>
+                        <td>32.75</td>
+                        <td>500</td>
+                        <td>0.00</td>
+                        <td>ICIC</td>
+                        <td>INV000...</td>
+                        <td>25-04-...</td>
+                        <td>USD</td>
+                        <td><img src="https://via.placeholder.com/20" alt="Proof" class="table-icon"></td>
+                        <td></td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Bryan B..." class="user-avatar">
+                                <span>Bryan B...</span>
+                            </div>
+                        </td>
+                        <td>44</td>
+                        <td>44</td>
+                        <td>-44</td>
+                        <td>Bank of...</td>
+                        <td>INV000...</td>
+                        <td>25-04-...</td>
+                        <td>INR</td>
+                        <td><img src="https://via.placeholder.com/20" alt="Proof" class="table-icon"></td>
+                        <td></td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Arun Arora" class="user-avatar">
+                                <span>Arun Ar...</span>
+                            </div>
+                        </td>
+                        <td>44</td>
+                        <td>44</td>
+                        <td>0</td>
+                        <td>Bank of...</td>
+                        <td>INV000...</td>
+                        <td>25-04-...</td>
+                        <td>INR</td>
+                        <td><img src="https://via.placeholder.com/20" alt="Proof" class="table-icon"></td>
+                        <td></td>
+                        <td>...</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <button class="pagination-btn">Previous</button>
+            <div class="page-numbers">
+                <span class="page-number">1</span>
+                <span class="page-number active">2</span>
+                <span class="page-number">3</span>
+                <span>...</span>
+                <span class="page-number">8</span>
+                <span class="page-number">9</span>
+                <span class="page-number">10</span>
+            </div>
+            <button class="pagination-btn">Next ➡️</button>
+        </div>
+
+    </div>
+
+    <style>
+        /* General Body and Font Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f5f9;
+    color: #334155;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* This can hide the main body scrollbar if content *truly* fits,
+       but usually, you'd want the vertical scrollbar for long pages.
+       If you want to hide all scrollbars including vertical, it's problematic. */
+    /* overflow: hidden; */ /* Only use this if you are certain all content will fit vertically too */
+}
+
+/* Container for the main content below the header */
+.container {
+    padding: 30px;
+    flex-grow: 1; /* Allows the container to take up remaining space */
+    max-width: 1300px; /* Adjust this value as needed */
+    margin: 0 auto; /* Centers the container */
+    /* No overflow:hidden here for the container itself, as it could hide content */
+}
+
+/* Payments Header (Track your payments, Upload, Add payment) */
+.payments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.payments-header h1 {
+    font-size: 28px;
+    color: #1e293b;
+    font-weight: 600;
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.upload-btn, .add-payment-btn {
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #cbd5e1;
+    white-space: nowrap; /* Prevent buttons from wrapping text */
+}
+
+.upload-btn {
+    background-color: #ffffff;
+    color: #475569;
+}
+
+.add-payment-btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+/* Key Metrics Section */
+.key-metrics {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow metric cards to wrap on smaller screens */
+}
+
+.metric-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1; /* Allow cards to grow and shrink */
+    min-width: 150px; /* Ensure cards don't become too small */
+    border-right: 1px solid #e2e8f0;
+    padding: 0 10px;
+    padding-bottom: 10px; /* Added for better vertical spacing if wrapped */
+    padding-top: 10px; /* Added for better vertical spacing if wrapped */
+}
+
+.metric-card:last-child {
+    border-right: none;
+}
+
+/* Adjust border for wrapped items to prevent double borders or missing borders */
+@media (min-width: 901px) { /* Apply these borders only on larger screens where they are side-by-side */
+    .key-metrics > .metric-card:nth-child(odd):last-child {
+        border-right: none;
+    }
+    .key-metrics > .metric-card:nth-child(even) {
+        border-right: 1px solid #e2e8f0;
+    }
+}
+
+
+@media (max-width: 900px) { /* Adjust breakpoint as needed */
+    .metric-card {
+        border-right: none !important; /* Remove all right borders on smaller screens */
+        border-bottom: 1px solid #e2e8f0; /* Add bottom border instead */
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    .metric-card:last-child {
+        border-bottom: none !important;
+        margin-bottom: 0;
+    }
+}
+
+
+.metric-title {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Key Statistics Section */
+.section-title {
+    font-size: 20px;
+    color: #1e293b;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+.stat-title {
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.stat-change {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap; /* Prevent text wrapping in stat changes */
+}
+
+.stat-change.red {
+    color: #ef4444; /* Tailwind red-500 */
+}
+
+.stat-change.green {
+    color: #22c55e; /* Tailwind green-500 */
+}
+
+/* Table Controls (Search, Filter, Sort) */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px; /* Gap for spacing between search and buttons */
+    flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 15px;
+    flex-grow: 1; /* Allows search box to expand */
+    max-width: 400px; /* Limit search box width */
+    min-width: 200px; /* Ensure search box doesn't get too small */
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    font-size: 15px;
+    color: #334155;
+    width: 100%;
+}
+
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+.table-buttons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0; /* Prevent buttons from shrinking too much */
+}
+
+.filter-btn, .sort-btn {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #475569;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+/* Payments Table */
+.payments-table-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* --- CRITICAL CHANGE: REMOVED OVERFLOW-X: AUTO --- */
+    /* overflow-x: auto; */ /* Removed to prevent scrollbar */
+    margin-bottom: 25px;
+}
+
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* --- NEW: TABLE LAYOUT FIXED AND WORD BREAK --- */
+    table-layout: fixed; /* Ensures columns take up defined width or distribute evenly */
+    word-break: break-word; /* Allows long words to break and wrap */
+    /* --- NEW: MIN-WIDTH REDUCED TO BE MORE FLEXIBLE --- */
+    min-width: unset; /* Remove explicit min-width to allow more flexibility */
+}
+
+.payments-table th, .payments-table td {
+    text-align: left;
+    padding: 15px 10px; /* Reduced padding slightly for more space */
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+    vertical-align: middle; /* Align content vertically */
+}
+
+/* --- NEW: FLEXIBLE COLUMN WIDTHS --- */
+.payments-table th:nth-child(1), .payments-table td:nth-child(1) { width: 15%; } /* NAME */
+.payments-table th:nth-child(2), .payments-table td:nth-child(2) { width: 8%; } /* RECEIV... */
+.payments-table th:nth-child(3), .payments-table td:nth-child(3) { width: 8%; } /* RECEI... */
+.payments-table th:nth-child(4), .payments-table td:nth-child(4) { width: 8%; } /* OUTST... */
+.payments-table th:nth-child(5), .payments-table td:nth-child(5) { width: 10%; } /* BANK */
+.payments-table th:nth-child(6), .payments-table td:nth-child(6) { width: 12%; } /* INV NO */
+.payments-table th:nth-child(7), .payments-table td:nth-child(7) { width: 10%; } /* DATE */
+.payments-table th:nth-child(8), .payments-table td:nth-child(8) { width: 8%; } /* CURRE... */
+.payments-table th:nth-child(9), .payments-table td:nth-child(9) { width: 6%; } /* PROO... */
+.payments-table th:nth-child(10), .payments-table td:nth-child(10) { width: 8%; } /* VERIFI... */
+.payments-table th:nth-child(11), .payments-table td:nth-child(11) { width: 5%; } /* MORE */
+
+
+.payments-table th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.payments-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.payments-table tbody tr:hover {
+    background-color: #f0f4f8;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap; /* Keep user name and avatar on one line */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis for hidden text */
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0; /* Prevent avatar from shrinking */
+}
+
+.table-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allow pagination elements to wrap */
+}
+
+.pagination-btn {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.page-number {
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.page-number.active {
+    background-color: #e0e7ff;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* Header styles (from your provided code - ensure this is present) */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 30px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    flex-shrink: 0;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 38px;
+    height: 38px;
+}
+
+.menu-toggle {
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-toggle img {
+    width: 20px;
+    height: 20px;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 40px;
+    flex-wrap: wrap; /* Allow header elements to wrap if space is constrained */
+    justify-content: flex-end; /* Align to the right if wrapped */
+}
+
+.header-btn {
+    background-color: #e6f0ff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.dropdown {
+    padding: 12px 20px;
+    border: 1px solid #cdd5e1;
+    border-radius: 8px;
+    color: #2563eb;
+    font-weight: 500;
+    background-color: #ffffff;
+    white-space: nowrap;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a8c8f8;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+/* Media Queries for better responsiveness */
+@media (max-width: 1024px) { /* Adjust breakpoint for tablet sizes */
+    .payments-table th, .payments-table td {
+        padding: 15px 8px; /* Reduce padding more */
+        font-size: 13px; /* Slightly smaller font */
+    }
+}
+
+@media (max-width: 900px) {
+    .header {
+        padding: 0 15px;
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .right-section {
+        margin-right: 0;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .payments-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .upload-btn, .add-payment-btn {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .table-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        max-width: 100%;
+    }
+
+    .table-buttons {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .filter-btn, .sort-btn {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    /* Table specific adjustments for medium screens */
+    .payments-table {
+        min-width: unset; /* Allow table to shrink more */
+        /* You might need to hide some columns here if they become too cramped */
+    }
+     .payments-table th, .payments-table td {
+        padding: 10px 8px; /* More reduction in padding */
+        font-size: 12px; /* Even smaller font */
+    }
+
+    /* Hide less critical columns on smaller screens */
+    .payments-table th:nth-child(9), .payments-table td:nth-child(9), /* PROOF */
+    .payments-table th:nth-child(10), .payments-table td:nth-child(10) /* VERIFY */
+     {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .payments-table th:nth-child(2), .payments-table td:nth-child(2), /* RECEIV... */
+    .payments-table th:nth-child(3), .payments-table td:nth-child(3), /* RECEI... */
+    .payments-table th:nth-child(4), .payments-table td:nth-child(4) /* OUTST... */
+     {
+        display: none;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .key-metrics {
+        flex-direction: column;
+    }
+    .metric-card {
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .metric-card:last-child {
+        border-bottom: none;
+    }
+    .statistics-grid {
+        grid-template-columns: 1fr; /* Single column layout for very small screens */
+    }
+    .pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .pagination-btn {
+        width: 100%;
+        text-align: center;
+    }
+    .page-numbers {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .payments-table th:nth-child(5), .payments-table td:nth-child(5), /* BANK */
+    .payments-table th:nth-child(6), .payments-table td:nth-child(6), /* INV NO */
+    .payments-table th:nth-child(8), .payments-table td:nth-child(8) /* CURRE... */
+    {
+        display: none;
+    }
+}
+
+/* Even smaller devices - hide more columns if necessary */
+@media (max-width: 380px) {
+    .payments-table th:nth-child(7), .payments-table td:nth-child(7) /* DATE */
+    {
+        display: none;
+    }
+}
+    </style>
+
+
+<script>
+
+          //upload link
+        document.getElementById("Btnaddpayment").addEventListener("click", function(){
+        window.location.href = "payment.html";
+
+    });
+</script>
+</body>
+</html>

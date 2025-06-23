@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Summary Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <div class="left-section">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+            <button class="menu-toggle" id="menuToggle">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+            </button>
+        </div>
+
+        <div class="right-section">
+            <button class="header-btn">⚙️ Generate</button>
+            <button class="header-btn">💬</button>
+            <button class="header-btn">🔔</button>
+
+            <select class="dropdown">
+                <option selected>Bangalore</option>
+                <option>Mumbai</option>
+                <option>Delhi</option>
+            </select>
+
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> <span class="home1">Home</span></a></li>
+                <li><a href="#"><i class="fas fa-qrcode"></i> <span class="home">Dashboard</span></a></li>
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)" class="active">
+    <span><i class="fas fa-users"></i> Customers</span>
+    <span class="arrow-icon rotate"><i class="fas fa-chevron-down"></i></span>
+</a>
+<style>
+    .sidebar ul li:hover > a,
+.sidebar ul li.active > a,
+.sidebar ul li a.active {
+    background-color: #eef4ff;
+    color: var(--primary-color);
+}
+
+.sidebar ul li a.active i {
+    color: var(--primary-color);
+}
+
+</style>
+                    <ul class="submenu">
+                        <li><a href="#">View Customers</a></li>
+                        <li id="addCustomerBtn"><a href="#">Add Customers</a></li>
+                        <li id="addUploadBtn"><a href="#">Upload Customers Data</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)">
+                        <span><i class="far fa-file-alt" id="BtnYourInvoice"></i> Invoices</span>
+                        <span class="arrow-icon1"><i class="fas fa-chevron-down"></i></span>
+                    </a>
+                    <ul class="submenu">
+                        <li id="BtnViewInvoice"><a href="#">View Invoices</a></li>
+                        <li><a href="#" id="addInvoiceBtn" >Add Invoice</a></li>
+                        <li><a href="#" id="BtnUploadInvoice">Upload Invoice Data</a></li>
+                    </ul>
+                </li>
+                <style>
+                    /* .arrow-icon1{
+                        margin-left: 100px;
+                    }
+                    .arrow-icon2{
+                        margin-left: 80px;
+                    }
+                     .arrow-icon3{
+                        margin-left: 134px;
+                    }
+                     .arrow-icon4{
+                        margin-left: 3px;
+                    } */
+
+
+                </style>
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)">
+                        <span><i class="fas fa-bell"></i> Reminders</span>
+                        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">View Reminders</a></li>
+                        <li><a href="#" id="BtnreminderList"> Reminder List</a></li>
+
+                        <li><a href="#">Create Reminders</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)">
+                        <span><i class="fas fa-money-check-alt" id="BtnEMIList"></i> EMI</span>
+                        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#" id="BtnViewEmi" >View EMI</a></li>
+                        <li><a href="#" id="BtnADDEMI">Add EMI</a></li>
+                        <li><a href="#" id="BtnUploadEMIDATA">Upload EMI Data</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)">
+                        <span><i class="fas fa-donate" id="BtnTrackPayment"></i> Payment Dashboard</span>
+                        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Payment OCR Extraction</a></li>
+                        <li><a href="#" id="BtnMakePayment">Make Payment</a></li>
+                        <li><a href="#" id="BtnReconciliation">Bank Reconciliation</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"><i class="fas fa-id-card-alt"></i><span class="home2">Customer Portal</span></a></li>
+                
+            </ul>
+        </div>
+
+        <style>
+            .has-submenu > a {
+    display: flex;
+    justify-content: space-between; /* Distributes space between items */
+    align-items: center; /* Vertically centers items */
+    width: 100%; /* Ensure the link takes full width if in a nav bar */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color from parent or set explicitly */
+}
+
+/* Optional: if you want some spacing between the text and the arrow without pushing it to the far end */
+.has-submenu > a span:first-child {
+    margin-right: 10px; /* Adjust as needed */
+}
+
+/* Ensure the arrow icon itself is styled correctly if needed */
+.arrow-icon {
+    display: flex; /* Ensures the icon inside it is also aligned */
+    
+}
+        </style>
+
+        <main class="content-area">
+            <div class="content-header">
+                <h2>Customer summary</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="addUploadBtn1"><i class="fas fa-upload"></i> Upload</button>
+                    <button class="btn btn-primary" id="addCustomerBtn1"><i class="fas fa-user-plus"></i> Add customer</button>
+                    <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="filter-buttons">
+                    <button class="btn btn-outline"><i class="fas fa-filter"></i> Filter</button>
+                    <button class="btn btn-outline"><i class="fas fa-sort-amount-down"></i> Sort</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>CUSTOMER EMAIL</th>
+                            <th>TEAM SPACE NAME</th>
+                            <th>PHONE NUMBER</th>
+                            <th>MORE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="data:image/jpeg;base64,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" alt="Avatar" class="avatar"> Arun Arora</td>
+                            <td>arun5454@gmail.com</td>
+                            <td>Demo</td>
+                            <td>+918799521454</td>
+                            <td class="actions">
+                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-trash-alt"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGHnCJ84T4cOcTDX1Hg-s9KL0vzWJZJvfjXQ&s" alt="Avatar" class="avatar"> Bryan Bizlem</td>
+                            <td>bryan@bizlemdigital.com</td>
+                            <td>Demo</td>
+                            <td>+918799521454</td>
+                            <td class="actions">
+                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-trash-alt"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGHnCJ84T4cOcTDX1Hg-s9KL0vzWJZJvfjXQ&s" alt="Avatar" class="avatar"> Amit Ajmera</td>
+                            <td>amit.ajmera@larsentoubro.com</td>
+                            <td>Demo</td>
+                            <td>+918799521454</td>
+                            <td class="actions">
+                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-trash-alt"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGHnCJ84T4cOcTDX1Hg-s9KL0vzWJZJvfjXQ&s" alt="Avatar" class="avatar"> Nikhil Sharma</td>
+                            <td>nikhilshrama2@larsentoubro.com</td>
+                            <td>Demo</td>
+                            <td>+918799521454</td>
+                            <td class="actions">
+                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-pencil-alt"></i>
+                                <i class="fas fa-trash-alt"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button class="btn-pagination-nav "><i class="fas fa-arrow-left"></i> Previous</button>
+                <div class="page-numbers">
+                    <button class="page-num">1</button>
+                    <button class="page-num active">2</button>
+                    <span class="ellipsis">...</span>
+                    <button class="page-num">8</button>
+                    <button class="page-num">9</button>
+                    <button class="page-num">10</button>
+                </div>
+                <button class="btn-pagination-nav">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+
+
+    <style>
+        /* Universal Box-Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #007bff; /* A shade of blue */
+    --primary-dark-color: #0056b3;
+    --secondary-button-bg: #e9ecef; /* Light gray for secondary buttons */
+    --text-color-dark: #343a40; /* Dark gray for main text */
+    --text-color-light: #6c757d; /* Lighter gray for secondary text/icons */
+    --border-color: #dee2e6; /* Light gray for borders */
+    --bg-light: #f8f9fa; /* Very light background */
+    --bg-white: #ffffff; /* White background */
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Soft shadow for content boxes */
+    --shadow-medium: rgba(0, 0, 0, 0.15); /* Stronger shadow if needed */
+    --active-blue-light: #eef4ff; /* Light blue for active states */
+    --table-header-bg: #f2f2f2; /* Light gray for table header */
+    --pagination-active-bg: #007bff;
+    --pagination-active-text: #ffffff;
+    --border-radius: 6px; /* General border-radius for content boxes */
+
+    /* Variables from your header/sidebar CSS */
+    --primary-hover-color: #0056b3; /* Duplicate, but kept for clarity */
+    --sidebar-bg: #ffffff;
+    /* --text-color-dark: #333; /* Duplicate, using #343a40 from main content */
+    /* --text-color-light: #666; /* Duplicate, using #6c757d from main content */
+    /* --border-color: #e9ecef; /* Duplicate, using #dee2e6 from main content */
+    /* --shadow-light: rgba(0, 0, 0, 0.05); /* Duplicate, using 0.08 */
+    /* --shadow-medium: rgba(0, 0, 0, 0.1); /* Duplicate */
+}
+
+html, body {
+    height: 100%; /* Ensure html and body take full viewport height */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', 'Inter', sans-serif; /* Poppins first, then Inter as fallback, then generic sans-serif */
+    background-color: var(--bg-light);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column; /* Stack header and main-layout vertically */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    overflow: hidden;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 30px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Keep header fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other content */
+    box-sizing: border-box;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.menu-toggle {
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-toggle img {
+    width: 20px;
+    height: 20px;
+}
+
+.menu-toggle:hover {
+    background-color: #e0e7ff;
+    transform: translateY(-2px);
+}
+
+.menu-toggle:active {
+    transform: translateY(0);
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-btn {
+    background-color: #e6f0ff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: #2563eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-btn:hover {
+    background-color: #dbeafe;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+    padding: 12px 20px;
+    margin-top: 1px;
+    border: 1px solid #cdd5e1;
+    border-radius: 8px;
+    color: #2563eb;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563eb%22%20d%3D%22M287%20197.3L159.2%2069.5c-3.2-3.2-8.3-3.2-11.6%200L5.4%20197.3c-3.2%203.2-3.2%208.3%200%2011.6l11.6%2011.6c3.2%203.2%208.3%203.2%2011.6%200L148.4%20128.5l119.8%20119.8c3.2%203.2%208.3%203.2%2011.6%200l11.6-11.6c3.2-3.3%203.2-8.4%200-11.6z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+.dropdown:hover {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #a8c8f8;
+    transition: transform 0.2s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+
+/* Main Layout Container */
+.main-layout {
+    display: flex;
+    flex: 1; /* Occupy remaining vertical space */
+    margin-top: 70px; /* Push content down to clear the fixed header */
+    overflow: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 70px; /* Start below the header */
+    width: 300px; /* Fixed width */
+    height: calc(100vh - 70px); /* Fill remaining viewport height */
+    background: var(--sidebar-bg);
+    box-shadow: 3px 0 15px var(--shadow-light);
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-top: 20px;
+    z-index: 999;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar ul li {
+    position: relative;
+}
+
+.sidebar ul a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* To push text and arrow apart */
+    width: 100%;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    padding: 12px 25px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.sidebar ul a i {
+    margin-right: 12px;
+    color: var(--text-color-light);
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.sidebar ul li:hover > a,
+.sidebar ul li.active > a {
+    background-color: #eef4ff;
+    color: var(--primary-color);
+    padding-left: 30px;
+}
+
+.sidebar ul li:hover > a i,
+.sidebar ul li.active > a i {
+    color: var(--primary-color);
+}
+
+/* Specific margins for text (as provided in your CSS) */
+.sidebar ul a span {
+    flex-grow: 1;
+}
+
+.sidebar .home1 { /* Home */
+    margin-right: 165px;
+}
+
+.sidebar .home { /* Dashboard */
+    margin-right: 130px;
+}
+
+.sidebar .home2 { /* Customer Portal */
+    margin-right: 90px;
+}
+
+
+/* Arrow icon for submenus */
+.arrow-icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.arrow-icon.rotate {
+    transform: rotate(180deg);
+}
+
+/* Submenu */
+.submenu {
+    background: #fdfdfd;
+    padding: 0;
+    border-left: 3px solid var(--primary-color);
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px 45px;
+    font-size: 14px;
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: none;
+    white-space: nowrap;
+}
+
+.submenu li a:hover {
+    background-color: #e0e7ff;
+    color: var(--primary-color);
+    padding-left: 50px;
+}
+
+.submenu li.selected a {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 0 5px 5px 0;
+    margin-right: 15px;
+    position: relative;
+}
+
+.submenu li.selected a::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--primary-hover-color);
+}
+
+li.open .submenu {
+    max-height: 500px;
+}
+
+
+/* Main Content Area */
+.content-area {
+    flex: 1; /* Takes remaining space */
+    margin-left: 300px; /* Push content to the right, past the fixed sidebar */
+    padding: 20px;
+    background-color: var(--bg-light);
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: var(--bg-light);
+    padding: 20px;
+
+    /* border-radius: var(--border-radius); */
+    /* box-shadow: 0 2px 8px var(--shadow-light); */
+}
+
+.content-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* General Button Styles */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    font-weight: 500;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-button-bg);
+    color: var(--text-color-dark);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #dde1e5;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 8px;
+    font-size: 18px;
+    color: var(--text-color-light);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.btn-icon:hover {
+    background-color: var(--bg-light);
+}
+
+/* Filter Section */
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: var(--bg-light);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    /* box-shadow: 0 2px 8px var(--shadow-light); */
+}
+
+.search-box {
+    position: relative;
+    flex: 1; /* Allow search box to grow */
+    margin-right: 20px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-light);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 15px 10px 45px; /* Left padding for icon */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    color: var(--text-color-dark);
+}
+
+.search-box input::placeholder {
+    color: var(--text-color-light);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-outline:hover {
+    background-color: var(--bg-white);
+    border: 3px solid #c3ddfd;
+    color: #ceddfd;
+    font-weight: bold;
+}
+
+.btn-outline {
+    background-color: var(--bg-light);
+        border: 3px solid #c3ddfd;
+
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline i {
+    margin-right: 8px;
+}
+
+.btn-icon-only {
+    padding: 10px 12px;
+}
+.btn-icon-only i {
+    margin-right: 0;
+}
+
+
+/* Table Styles */
+.table-container {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius);
+    /* box-shadow: 0 2px 8px var(--shadow-light); */
+    overflow-x: auto;
+    margin-bottom: -1px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table thead th {
+    background-color: var(--table-header-bg);
+    color: var(--text-color-light);
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+table tbody tr:last-child {
+    border-bottom: none;
+}
+
+table tbody tr:hover {
+    background-color: #f6f6f6;
+}
+
+table tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+}
+
+table tbody td .avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+    object-fit: cover;
+    background-color: #ccc;
+}
+
+table tbody td.actions i {
+    color: var(--text-color-light);
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+table tbody td.actions i:hover {
+    color: var(--primary-color);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    /* background-color: var(--bg-white); */
+    border-radius: var(--border-radius);
+    /* box-shadow: 0 2px 8px var(--shadow-light); */
+}
+
+.btn-pagination-nav {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color-dark);
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-pagination-nav:hover:not(.disabled) {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-pagination-nav.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.page-num {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color-dark);
+    width: 35px;
+    height: 35px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.page-num:hover:not(.active) {
+    background-color: var(--active-blue-light);
+    color: var(--primary-color);
+}
+
+.page-num.active {
+    background-color: var(--pagination-active-bg);
+    color: var(--pagination-active-text);
+}
+
+.page-numbers .ellipsis {
+    color: var(--text-color-light);
+    font-weight: bold;
+    padding: 0 5px;
+}
+    </style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const hasSubmenus = document.querySelectorAll('.has-submenu');
+    // Select all direct <li> children of ul that are not 'has-submenu'
+    const simpleSidebarLinks = document.querySelectorAll('.sidebar > ul > li:not(.has-submenu) > a');
+
+    // Function to close all open submenus
+    function closeAllSubmenus() {
+        hasSubmenus.forEach(function(item) {
+            if (item.classList.contains('open')) {
+                item.classList.remove('open');
+                item.querySelector('.submenu').style.maxHeight = "0";
+                item.querySelector('.arrow-icon i').classList.remove('rotate');
+            }
+        });
+    }
+
+    // Submenu toggle logic
+    hasSubmenus.forEach(function(item) {
+        const anchor = item.querySelector('a'); // The main link for the submenu
+        const submenu = item.querySelector('.submenu');
+        const arrowIcon = item.querySelector('.arrow-icon i');
+
+        if (anchor && submenu && arrowIcon) {
+            anchor.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior for submenu toggles
+
+                // Close other open submenus before opening this one
+                hasSubmenus.forEach(function(otherItem) {
+                    if (otherItem !== item && otherItem.classList.contains('open')) {
+                        otherItem.classList.remove('open');
+                        otherItem.querySelector('.submenu').style.maxHeight = "0";
+                        otherItem.querySelector('.arrow-icon i').classList.remove('rotate');
+                    }
+                });
+
+                // Toggle the 'open' class on the parent li
+                item.classList.toggle('open');
+
+                // Toggle the max-height of the submenu for smooth animation
+                if (item.classList.contains('open')) {
+                    submenu.style.maxHeight = submenu.scrollHeight + "px";
+                    arrowIcon.classList.add('rotate');
+                } else {
+                    submenu.style.maxHeight = "0";
+                    arrowIcon.classList.remove('rotate');
+                }
+
+                // Manage active state for the main menu item (parent of submenu)
+                // Remove 'active' from all simple links
+                simpleSidebarLinks.forEach(link => link.parentElement.classList.remove('active'));
+                // Remove 'active' from all other submenu parents
+                hasSubmenus.forEach(subItem => {
+                    if (subItem !== item) {
+                        subItem.classList.remove('active');
+                    }
+                });
+                // Add 'active' to the current submenu parent if it's open
+                if (item.classList.contains('open')) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active'); // Remove if closed
+                }
+            });
+        }
+    });
+
+    // Active state logic for simple sidebar links (without submenus)
+    simpleSidebarLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            // event.preventDefault(); // Uncomment if these are dummy links and you don't want navigation
+
+            // Close any currently open submenus
+            closeAllSubmenus();
+
+            // Remove 'active' from all sidebar list items (both simple and submenu parents)
+            document.querySelectorAll('.sidebar ul li').forEach(li => li.classList.remove('active'));
+
+            // Add 'active' to the clicked simple list item
+            this.parentElement.classList.add('active');
+        });
+    });
+
+    // Handle clicks on submenu child links
+    document.querySelectorAll('.submenu a').forEach(submenuLink => {
+        submenuLink.addEventListener('click', function(event) {
+            // event.preventDefault(); // Uncomment if these are dummy links and you don't want navigation
+
+            // First, remove 'selected' class from all submenu links
+            document.querySelectorAll('.submenu li.selected').forEach(li => li.classList.remove('selected'));
+            // Add 'selected' to the clicked submenu item's parent li
+            this.parentElement.classList.add('selected');
+
+            // Also manage the 'active' state for the *main* parent menu item
+            // Find the closest ancestor <li> with 'has-submenu' class
+            let parentHasSubmenu = this.closest('.has-submenu');
+            if (parentHasSubmenu) {
+                // Ensure only this parent has 'active' and it's 'open'
+                closeAllSubmenus(); // Close others first
+                document.querySelectorAll('.sidebar ul li').forEach(li => li.classList.remove('active')); // Clear all active
+                parentHasSubmenu.classList.add('active', 'open'); // Add active and ensure open
+                parentHasSubmenu.querySelector('.submenu').style.maxHeight = parentHasSubmenu.querySelector('.submenu').scrollHeight + "px";
+                parentHasSubmenu.querySelector('.arrow-icon i').classList.add('rotate');
+            }
+        });
+    });
+
+
+});
+
+
+ document.getElementById("addCustomerBtn").addEventListener("click", function(){
+        window.location.href= "addcustomer.html";
+    });
+document.getElementById("addCustomerBtn1").addEventListener("click", function(){
+        window.location.href= "addcustomer.html";
+    });
+
+    document.getElementById("addUploadBtn").addEventListener("click", function(){
+        window.location.href= "uploadorg.html";
+    });
+     document.getElementById("addUploadBtn1").addEventListener("click", function(){
+        window.location.href= "uploadorg.html";
+    });
+    document.getElementById("BtnViewInvoice").addEventListener("click", function(){
+        window.location.href= "viewinvoice.html";
+    });
+    
+
+     document.getElementById("BtnYourInvoice").addEventListener("click", function(){
+        window.location.href= "yourinvoice.html";
+    });
+     document.getElementById("addInvoiceBtn").addEventListener("click", function(){
+        window.location.href= "addinvoice.html";
+    });
+    BtnUploadInvoice
+    document.getElementById("BtnUploadInvoice").addEventListener("click", function(){
+        window.location.href= "uploadorg.html";
+    });
+
+    
+    document.getElementById("BtnreminderList").addEventListener("click", function(){
+        window.location.href= "reminderlist.html";
+    });
+
+     document.getElementById("BtnEMIList").addEventListener("click", function(){
+        window.location.href= "EMIlist.html";
+    });
+
+    
+
+     document.getElementById("BtnADDEMI").addEventListener("click", function(){
+        window.location.href= "addemi.html";
+    });
+     document.getElementById("BtnUploadEMIDATA").addEventListener("click", function(){
+        window.location.href= "uploadorg.html";
+    });
+
+     document.getElementById("BtnViewInvoice").addEventListener("click", function(){
+        window.location.href= "addemi.html";
+    });
+    
+
+    document.getElementById("BtnTrackPayment").addEventListener("click", function(){
+        window.location.href= "trackpayment.html";
+    });
+    document.getElementById("BtnMakePayment").addEventListener("click", function(){
+        window.location.href= "payment.html";
+    });
+
+     document.getElementById("BtnReconciliation").addEventListener("click", function(){
+        window.location.href= "Reconciliation.html";
+    });
+</script>
+
+</body>
+</html>

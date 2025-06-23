@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidebar</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+  <ul>
+    <li><a href="#"><i class="fas fa-home"></i> <span class="home1">Home</span></a></li>
+    <li><a href="#"><i class="fas fa-qrcode"></i> <span class="home">Dashboard</span></a></li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)">
+        <span><i class="fas fa-users"></i> Customers</span>
+        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+      </a>
+      <ul class="submenu">
+        <li><a href="#">View Customers</a></li>
+        <li><a href="#">Add Customers</a></li>
+        <li><a href="#">Upload Customers Data</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)">
+        <span><i class="far fa-file-alt"></i> Invoices</span>
+        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+      </a>
+      <ul class="submenu">
+        <li><a href="#">View Invoices</a></li>
+        <li><a href="#">Add Invoice</a></li>
+        <li><a href="#">Upload Invoice Data</a></li>
+      </ul>
+    </li>
+
+    <!-- Opened Reminders Section with selected "Reminder List" -->
+    <li class="has-submenu open active">
+      <a href="javascript:void(0)">
+        <span><i class="fas fa-bell"></i> Reminders</span>
+        <span class="arrow-icon"><i class="fas fa-chevron-up"></i></span>
+      </a>
+      <ul class="submenu">
+        <li><a href="#">View Reminders</a></li>
+        <li class="selected"><a href="#">Reminder List</a></li>
+        <li><a href="#">Create Reminders</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)">
+        <span><i class="fas fa-money-check-alt"></i> EMI</span>
+        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+      </a>
+      <ul class="submenu">
+        <li><a href="#">View EMI</a></li>
+        <li><a href="#">Add EMI</a></li>
+        <li><a href="#">Upload EMI Data</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)">
+        <span><i class="fas fa-donate"></i> Payment Dashboard</span>
+        <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+      </a>
+      <ul class="submenu">
+        <li><a href="#">Payment OCR Extraction</a></li>
+        <li><a href="#">Make Payment</a></li>
+        <li><a href="#">Bank Reconciliation</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#"><i class="fas fa-id-card-alt"></i><span class="home2">Customer Portal</span></a></li>
+  </ul>
+</div>
+
+<style>
+:root {
+  --sidebar-bg: #ffffff;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --text-color-dark: #333;
+  --text-color-light: #666;
+  --border-color: #eee;
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 70px;
+  width: 300px;
+  height: 150%;
+  background: var(--sidebar-bg);
+  box-shadow: 3px 0 15px var(--shadow-light);
+  overflow-y: auto;
+  padding-top: 20px;
+}
+
+.sidebar .home {
+  margin-right: 130px;
+}
+
+.sidebar .home1 {
+  margin-right: 165px;
+}
+
+.sidebar .home2 {
+  margin-right: 90px;
+}
+
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar ul li {
+  position: relative;
+}
+
+.sidebar ul a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--text-color-dark);
+  padding: 12px 25px;
+  border-bottom: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.sidebar ul a i {
+  margin-right: 12px;
+  color: var(--text-color-light);
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar ul li:hover > a,
+.sidebar ul li.active > a {
+  background-color: #eef4ff;
+  color: var(--primary-color);
+  padding-left: 30px;
+}
+
+.sidebar ul li:hover > a i,
+.sidebar ul li.active > a i {
+  color: var(--primary-color);
+}
+
+/* Arrow icon */
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotate {
+  transform: rotate(180deg);
+}
+
+/* Submenu */
+.submenu {
+  background: #fdfdfd;
+  padding: 0;
+  border-left: 3px solid var(--primary-color);
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.submenu li a {
+  display: block;
+  padding: 10px 45px;
+  font-size: 14px;
+  color: var(--text-color-light);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: none;
+}
+
+.submenu li a:hover {
+  background-color: #e0e7ff;
+  color: var(--primary-color);
+  padding-left: 50px;
+}
+
+.submenu li.selected a {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  border-radius: 0 5px 5px 0;
+  margin-right: 15px;
+  position: relative;
+}
+
+.submenu li.selected a::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--primary-hover-color);
+}
+
+li.open .submenu {
+  max-height: 500px;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const submenuItems = document.querySelectorAll(".has-submenu > a");
+
+  submenuItems.forEach(item => {
+    item.addEventListener("click", function (event) {
+      event.preventDefault();
+      const parent = item.parentElement;
+      const arrow = item.querySelector(".arrow-icon i");
+
+      parent.classList.toggle("open");
+      arrow.classList.toggle("fa-chevron-down");
+      arrow.classList.toggle("fa-chevron-up");
+    });
+  });
+
+  const menuToggle = document.getElementById("menuToggle");
+  const sidebar = document.getElementById("sidebar");
+  const mainContent = document.querySelector(".main-content");
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+  }
+
+  if (mainContent) {
+    mainContent.addEventListener("click", () => {
+      if (sidebar.classList.contains("active") && window.innerWidth <= 768) {
+        sidebar.classList.remove("active");
+      }
+    });
+  }
+
+  // Add active state to selected reminder item (already done in HTML for this example)
+});
+</script>
+
+</body>
+</html>

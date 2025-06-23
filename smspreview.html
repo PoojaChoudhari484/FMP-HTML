@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whatsapp Preview</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .topbar {
+      height: 60px;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      width: 100%;
+      background: #f9fafb;
+    }
+
+    .left-panel, .right-panel {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .left-panel {
+      background: #fff;
+      border-right: 1px solid #eee;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .colors {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .color-box {
+      padding: 8px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .right-panel {
+      background: #f9fafb;
+    }
+
+    .preview {
+      background: #fefefe;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .invoice-msg {
+      background: #e0f2fe;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #0284c7;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .summary {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f3f4f6;
+      border-radius: 6px;
+    }
+
+    .footer {
+      margin-top: 20px;
+    }
+
+    .bottom-buttons {
+      height: 60px;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .save {
+      background: #2563eb;
+      color: white;
+    }
+
+    .close {
+      background: white;
+      border: 1px solid #2563eb;
+      color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+     <!--Top Content -->
+    <!--Top Content -->
+  <div class="header">
+    <div class="left-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLjX3rfIZw-1W6jrHmkDohECiQfalX4mko0p7lT77IBUgCZNC2" alt="Logo" class="logo" />
+      <button class="menu-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="menu" />
+      </button>
+    </div>
+
+    <div class="right-section">
+      <!-- <button class="header-btn">⚙️ Genrate</button> -->
+       <button class="header-btn">
+  <span class="icon">⚙️</span>
+  <span class="text">Generate</span>
+</button>
+<style>
+    .header-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Space between icon and text */
+  background-color: #e6f0ff;
+  color: #2563eb;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+    font-weight:500;
+    justify-content: center;
+
+
+    
+ 
+  transition: all 0.3s ease;
+ 
+}
+
+</style>
+      <button class="header-btn">💬</button>
+      <button class="header-btn">🔔</button>
+
+      <select class="dropdown">
+        <option selected>Bangalore</option>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+      </select>
+
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="profile-pic"/>
+    </div>
+  </div>
+
+
+
+
+
+
+
+    <div class="main">
+      <div class="left-panel">
+        <label>Category*</label>
+        <select><option>Select category</option></select>
+
+        <label>Reminder type*</label>
+        <div class="radio-group">
+          <label><input type="radio" id="Btnemail"> Email</label>
+          <label><input type="radio" checked> SMS</label>
+          <label><input type="radio" id="BtnWhatsapp"> WhatsApp</label>
+        </div>
+
+        <label>Template name*</label>
+        <input type="text" placeholder="Enter name" />
+
+        <label>Subject line*</label>
+        <input type="text" placeholder="Enter subject line" />
+
+        <div class="colors">
+          <div>
+            <label>Header text color</label>
+            <div class="color-box" style="background: #1a2258">#1a2258</div>
+          </div>
+          <div>
+            <label>Background color</label>
+            <div class="color-box" style="background: #435bfd">#435bfd</div>
+          </div>
+        </div>
+      </div>
+
+
+      <style>
+        .preview h3{
+            text-align: center;
+            font-weight: 200;
+        }
+      </style>
+
+      <div class="right-panel">
+        <h2>SMS Preview</h2><br>
+        <div class="preview">
+            <h3>SMS Message</h3><br>
+         
+
+          <div class="summary">
+            <h5>Customer, <br>Hello John Doe, We hope this message finds you well. This is a friendly <br>
+                reminder that your invoice is due for payment. Invoice Summary Invoice<br>
+                 Number: #INV-2024-001 Date: Mar 15, 2024 Amount<br>
+                 Due: $1,250.00 Total Due: $1,250.00 Please process the payment at your earliest convenience.<br>
+                 If you have any questions, feel free to contact us. Best regards, Your
+                  <br>Company Team https://invoice.link/123<br> your invoice is due for payment.<br><br></h5>
+          
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+    <div class="bottom-buttons">
+      <button class="Save-btn">Close</button>
+    </div>
+  </div>
+  <script>
+      document.getElementById("Btnemail").addEventListener("click", function(){
+        window.location.href = "emailpreview.html";
+
+    });
+    document.getElementById("BtnWhatsapp").addEventListener("click", function(){
+        window.location.href = "whatsapppreview.html";
+
+    });
+  </script>
+</body>
+</html>
